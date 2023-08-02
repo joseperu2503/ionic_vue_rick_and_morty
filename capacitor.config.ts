@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'rick_and_morty_ionic_vue',
+  appName: 'Rick and Morty',
   webDir: 'dist',
   server: {
     androidScheme: 'https'
