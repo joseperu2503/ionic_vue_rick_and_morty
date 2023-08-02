@@ -1,0 +1,7 @@
+{
+  "name": "rick_and_morty_ionic_vue",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
