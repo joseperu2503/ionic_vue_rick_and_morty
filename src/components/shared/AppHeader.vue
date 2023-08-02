@@ -4,16 +4,16 @@
       <div>
         <img src="@/assets/logo.png" class="h-14 cursor-pointer" @click="goHome" />
       </div>
-      <i class="fas fa-bars text-white text-2xl sm:hidden" @click="toggleSidebar"></i>
+      <!-- <i class="fas fa-bars text-white text-2xl sm:hidden" @click="toggleSidebar"></i>
       <nav class="hidden text-white text-xl sm:flex gap-8">
         <router-link active-class="active" to="/" class="neon">Home</router-link>
         <router-link active-class="active" to="/characters" class="neon">Characters</router-link>
         <router-link active-class="active" to="/locations" class="neon">Locations</router-link>
         <router-link active-class="active" to="/episodes" class="neon">Episodes</router-link>
-      </nav>
+      </nav> -->
     </div>
     <div class="bg-black w-full h-20 fixed top-0 z-10" :style="`opacity: ${opacity};`"></div>
-    <div class="fixed top-0 right-0 left-0 bottom-0 bg-black/70 z-10 backdrop-blur-sm transition-all"
+    <!-- <div class="fixed top-0 right-0 left-0 bottom-0 bg-black/70 z-10 backdrop-blur-sm transition-all"
       :class="[showSideBar ? 'translate-x-0' : 'translate-x-full']">
       <div class="flex h-full flex-col items-center justify-center text-white text-xl sm:flex gap-4">
         <router-link active-class="active" to="/" class="neon">Home</router-link>
@@ -21,7 +21,7 @@
         <router-link active-class="active" to="/locations" class="neon">Locations</router-link>
         <router-link active-class="active" to="/episodes" class="neon" @click="toggleSidebar">Episodes</router-link>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
