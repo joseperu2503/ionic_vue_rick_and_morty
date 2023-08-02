@@ -2,7 +2,6 @@ import { useSidebarStore } from "@/stores/sidebar";
 import { storeToRefs } from "pinia";
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Tabs from "@/components/shared/Tabs.vue";
-import Layout from "@/components/shared/Layout.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

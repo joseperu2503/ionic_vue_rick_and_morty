@@ -24,7 +24,7 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Layout from './components/shared/Layout.vue';
-
+import { Icon } from '@iconify/vue';
 
 const pinia = createPinia()
 
@@ -32,6 +32,7 @@ const app = createApp(App)
   .use(pinia)
   .use(IonicVue)
   .component('Layout', Layout)
+  .component('Icon', Icon)
   .use(router);
 
 router.isReady().then(() => {

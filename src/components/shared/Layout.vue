@@ -1,5 +1,5 @@
 <template>
-  <ion-page>
+  <ion-page :fullscreen="true">
     <ion-content>
       <div class="fixed top-0 bottom-0 left-0 right-0 overflow-y-auto px-8 fondo pt-32 md:pt-40 pb-16 md:pb-36 z-0"
         id="body">
