@@ -8,3 +8,5 @@ npx @capacitor/assets generate
 <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
     <item name="android:windowBackground">@drawable/splash</item>
 </style>
+
+npx @capacitor/assets generate --splashBackgroundColor "#000000" --splashBackgroundColorDark "#000000"
