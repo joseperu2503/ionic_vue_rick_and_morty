@@ -2,7 +2,7 @@
   <ion-page :fullscreen="true">
     <ion-tabs>
       <ion-router-outlet :animation="animation"></ion-router-outlet>
-      <ion-tab-bar slot="bottom">
+      <!-- <ion-tab-bar slot="bottom">
         <div class=" w-full bg-black  flex border-t-[1px] border-gray-600">
           <router-link to="/episodes"
             class="w-1/3 ion-activatable overflow-hidden relative flex justify-center flex-col items-center gap-1 pt-1"
@@ -32,13 +32,32 @@
             <ion-ripple-effect></ion-ripple-effect>
           </router-link>
         </div>
+      </ion-tab-bar> -->
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="characters" href="/characters">
+          <Icon icon="ph:users-fill" class="w-auto h-6" v-if="route.path == '/characters'" />
+          <Icon icon="ph:users-bold" class="w-auto h-6" v-else />
+          <ion-label>Characters</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="locations" href="/locations">
+          <Icon icon="mingcute:world-2-fill" class="w-auto h-6" v-if="route.path == '/locations'" />
+          <Icon icon="mingcute:world-2-line" class="w-auto h-6" v-else />
+          <ion-label>Locations</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="episodes" href="/episodes">
+          <Icon icon="solar:tv-bold" class="w-auto h-6" v-if="route.path == '/episodes'" />
+          <Icon icon="solar:tv-linear" class="w-auto h-6" v-else />
+          <ion-label>Episodes</ion-label>
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonTabBar, IonTabs, IonPage, IonRouterOutlet, IonRippleEffect } from '@ionic/vue';
+import { IonPage, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel } from '@ionic/vue';
 import { useRoute } from 'vue-router'
 import { createFadeAnimation } from '@/animations/nav-animation'
 import { ref } from 'vue';
@@ -48,9 +67,18 @@ const animation = ref(createFadeAnimation); // Asignar la animación creada
 
 </script>
 <style scoped>
+ion-tab-button {
+  --color-focused: white;
+
+  --color: rgb(199, 199, 199);
+
+  --color-selected: white;
+  --color-active: white;
+  --background: black;
+}
+
 ion-tab-bar {
   background-color: transparent;
-  height: min-content;
   contain: none !important;
 }
 </style>
