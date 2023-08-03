@@ -1,7 +1,7 @@
 <template>
   <ion-page :fullscreen="true">
     <ion-tabs>
-      <ion-router-outlet :animation="animation"></ion-router-outlet>
+      <ion-router-outlet :animated="false"></ion-router-outlet>
       <!-- <ion-tab-bar slot="bottom">
         <div class=" w-full bg-black  flex border-t-[1px] border-gray-600">
           <router-link to="/episodes"
@@ -33,7 +33,7 @@
           </router-link>
         </div>
       </ion-tab-bar> -->
-      <ion-tab-bar slot="bottom">
+      <ion-tab-bar slot="bottom" class="border-t-[1px] border-gray-600">
         <ion-tab-button tab="characters" href="/characters">
           <Icon icon="ph:users-fill" class="w-auto h-6" v-if="route.path == '/characters'" />
           <Icon icon="ph:users-bold" class="w-auto h-6" v-else />
@@ -69,9 +69,7 @@ const animation = ref(createFadeAnimation); // Asignar la animación creada
 <style scoped>
 ion-tab-button {
   --color-focused: white;
-
   --color: rgb(199, 199, 199);
-
   --color-selected: white;
   --color-active: white;
   --background: black;

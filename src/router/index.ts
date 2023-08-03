@@ -3,7 +3,6 @@ import { storeToRefs } from "pinia";
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Tabs from "@/components/shared/Tabs.vue";
 import Layout2 from "@/components/shared/Layout2.vue";
-import Characters from "@/views/Characters.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,7 +31,7 @@ const router = createRouter({
             {
               path: "/characters",
               name: "characters",
-              component: Characters,
+              component: () => import("@/views/Characters.vue"),
             },
             {
               path: "/characters/:characterId",

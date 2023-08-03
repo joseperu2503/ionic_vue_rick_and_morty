@@ -4,7 +4,7 @@
       <div class="fixed top-0 bottom-0 left-0 right-0  fondo  z-0">
         <AppHeader />
 
-        <ion-router-outlet class="overflow-y-auto " id="body"></ion-router-outlet>
+        <ion-router-outlet class="overflow-y-auto " id="body" :animated="false"></ion-router-outlet>
       </div>
     </ion-content>
   </ion-page>
@@ -17,6 +17,7 @@ import { IonPage, IonContent, IonRouterOutlet } from '@ionic/vue';
 <style scoped>
 .fondo {
   background: url("@/assets/fondo2.png");
+  background-color: #181c2b;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
