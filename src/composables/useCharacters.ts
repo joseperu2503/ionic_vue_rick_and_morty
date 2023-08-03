@@ -3,6 +3,7 @@ import { GetAllCharactersInterface } from "@/interfaces/character.interface.ts";
 import { useCharacterStore } from "@/stores/character";
 import { storeToRefs } from "pinia";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { IonPage, onIonViewWillEnter, onIonViewDidEnter, onIonViewWillLeave, onIonViewDidLeave } from '@ionic/vue';
 
 export function useCharacters() {
   const characterStore = useCharacterStore();
@@ -66,7 +67,7 @@ export function useCharacters() {
     return scrollY + alturaVentana >= alturaTotal - 500;
   };
 
-  onMounted(() => {
+  onIonViewWillEnter(() => {
     let body = document.getElementById("body");
     if (body) {
       body.scrollTop = 0;
@@ -75,7 +76,7 @@ export function useCharacters() {
     body?.addEventListener("scroll", loadMoreCharacters);
   });
 
-  onBeforeUnmount(() => {
+  onIonViewWillLeave(() => {
     document
       .getElementById("body")
       ?.removeEventListener("scroll", loadMoreCharacters);

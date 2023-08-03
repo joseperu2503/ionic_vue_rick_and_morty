@@ -3,6 +3,7 @@ import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { GetAllLocationsInterface } from "@/interfaces/location.interface.ts";
 import { useLocationStore } from "@/stores/location";
 import { storeToRefs } from "pinia";
+import { IonPage, onIonViewWillEnter, onIonViewDidEnter, onIonViewWillLeave, onIonViewDidLeave } from '@ionic/vue';
 
 export function useLocations() {
   const locationStore = useLocationStore();
@@ -66,7 +67,7 @@ export function useLocations() {
     return scrollY + alturaVentana >= alturaTotal - 500;
   };
 
-  onMounted(() => {
+  onIonViewWillEnter(() => {
     let body = document.getElementById("body");
     if (body) {
       body.scrollTop = 0;
@@ -75,7 +76,7 @@ export function useLocations() {
     body?.addEventListener("scroll", loadMoreLocations);
   });
 
-  onBeforeUnmount(() => {
+  onIonViewWillLeave(() => {
     document
       .getElementById("body")
       ?.removeEventListener("scroll", loadMoreLocations);

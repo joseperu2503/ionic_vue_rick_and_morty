@@ -3,6 +3,7 @@ import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { GetAllEpisodesInterface } from "@/interfaces/episode.interface.ts";
 import { useEpisodeStore } from "@/stores/episode";
 import { storeToRefs } from "pinia";
+import { IonPage, onIonViewWillEnter, onIonViewDidEnter, onIonViewWillLeave, onIonViewDidLeave } from '@ionic/vue';
 
 export function useEpisodes() {
   const episodeStore = useEpisodeStore();
@@ -66,7 +67,7 @@ export function useEpisodes() {
     return scrollY + alturaVentana >= alturaTotal - 500;
   };
 
-  onMounted(() => {
+  onIonViewWillEnter(() => {
     let body = document.getElementById("body");
     if (body) {
       body.scrollTop = 0;
@@ -75,7 +76,7 @@ export function useEpisodes() {
     body?.addEventListener("scroll", loadMoreEpisodes);
   });
 
-  onBeforeUnmount(() => {
+  onIonViewWillLeave(() => {
     document
       .getElementById("body")
       ?.removeEventListener("scroll", loadMoreEpisodes);
