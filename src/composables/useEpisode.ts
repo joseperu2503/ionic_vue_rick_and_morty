@@ -1,31 +1,32 @@
 import { http } from "@/http/http.service";
 import { ref } from "vue";
-import { Location, initLocation } from "@/interfaces/location.interface.ts";
-
+import { Episode, initEpisode } from "@/interfaces/episode.interface.ts";
 import { useSomeCharacters } from "@/composables/useSomeCharacters";
 
-export function useLocation() {
-  const location = ref<Location>(initLocation);
+export function useEpisode() {
 
+  const episode = ref<Episode>(initEpisode);
+  const showEpisode = ref<boolean>(false);
   const { characters, getSomeCharacters } = useSomeCharacters();
 
-  const getLocation = (locationId: string) => {
+  const getEpisode = (episodeId: string) => {
     http
-      .get<Location>(`location/${locationId}`)
+      .get<Episode>(`episode/${episodeId}`)
       .then((response) => {
-        location.value = response.data;
+        episode.value = response.data;
+        showEpisode.value = true;
 
         let charactersId: string[] = [];
 
-        location.value.residents.map((url) => {
+        episode.value.characters.map((url) => {
           const parts = url.split("/");
           const id = parts[parts.length - 1];
           charactersId.push(id);
         });
 
         if (charactersId.length > 0) {
-          let someCharacters = charactersId.join(",");
-          getSomeCharacters(someCharacters);
+          let someCharaters = charactersId.join(",");
+          getSomeCharacters(someCharaters);
         }
       })
       .catch((error) => {
@@ -34,8 +35,9 @@ export function useLocation() {
   };
 
   return {
-    getLocation,
-    location,
-    characters,
+    getEpisode,
+    episode,
+    showEpisode,
+    characters
   };
 }

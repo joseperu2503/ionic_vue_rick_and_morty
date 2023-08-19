@@ -1,17 +1,30 @@
 <template>
-  <Layout>
-    <div class="w-full max-w-7xl mx-auto">
-      <InputSearch v-model="search" />
-      <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mx-auto">
+  <ion-page mode="ios">
+    <ion-header :translucent="true" class="ion-no-border" >
+      <ion-toolbar>
+        <ion-title>Characters</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-searchbar :animated="true" v-model="search"></ion-searchbar>
+        <!-- <ion-progress-bar type="indeterminate"></ion-progress-bar> -->
+      </ion-toolbar>
+    </ion-header>
+    <ion-content :fullscreen="true" class="ion-padding">
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         <CharacterItem v-for="item in characters" :key="item.id" :character="item" />
       </div>
-    </div>
-  </Layout>
+      <ion-infinite-scroll @ionInfinite="loadMoreCharacters" :disabled="page > numPages">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+    </ion-content>
+  </ion-page>
 </template>
 <script lang="ts" setup>
 import CharacterItem from "@/components/character/CharacterItem.vue";
 import { useCharacters } from "@/composables/useCharacters";
-import InputSearch from "@/components/shared/InputSearch.vue";
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonProgressBar, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
 
-const { characters, search } = useCharacters();
+const { characters, search, loadMoreCharacters, page, numPages } = useCharacters();
 </script>
+

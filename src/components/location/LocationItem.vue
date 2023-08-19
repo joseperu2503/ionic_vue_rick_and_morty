@@ -25,9 +25,9 @@
 <script lang="ts" setup>
 import { Location } from "@/interfaces/location.interface";
 import { toRefs } from "vue";
-import { useRouter } from "vue-router";
+import { useIonRouter } from '@ionic/vue';
 
-const router = useRouter();
+const router = useIonRouter();
 
 const props = defineProps<{ location: Location }>();
 const { location } = toRefs(props);

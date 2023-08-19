@@ -1,9 +1,9 @@
 import { http } from "@/http/http.service";
-import { ref, onMounted, onBeforeUnmount, watch } from "vue";
+import { ref, watch } from "vue";
 import { GetAllEpisodesInterface } from "@/interfaces/episode.interface.ts";
 import { useEpisodeStore } from "@/stores/episode";
 import { storeToRefs } from "pinia";
-import { IonPage, onIonViewWillEnter, onIonViewDidEnter, onIonViewWillLeave, onIonViewDidLeave } from '@ionic/vue';
+import { InfiniteScrollCustomEvent } from "@ionic/vue";
 
 export function useEpisodes() {
   const episodeStore = useEpisodeStore();
@@ -11,35 +11,34 @@ export function useEpisodes() {
   const { episodes, page, numPages, search } = storeToRefs(episodeStore);
   const loadMore = ref(true);
 
-  const getAllEpisodes = () => {
+  const getAllEpisodes = async () => {
     loadMore.value = false;
     let currentSearch: string = search.value;
-    http
-      .get<GetAllEpisodesInterface>(
-        `episode?page=${page.value}&name=${currentSearch}`
-      )
-      .then((response) => {
-        if (search.value == currentSearch) {
-          if (page.value == 1) {
-            episodes.value = [];
-          }
-          episodes.value.push(...response.data.results);
-          numPages.value = response.data.info.pages;
-          page.value++;
-          loadMore.value = true;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        if (search.value == currentSearch) {
+    try {
+      let response = await http
+        .get<GetAllEpisodesInterface>(
+          `episode?page=${page.value}&name=${currentSearch}`
+        )
+      if (search.value == currentSearch) {
+        if (page.value == 1) {
           episodes.value = [];
         }
-      });
+        episodes.value.push(...response.data.results);
+        numPages.value = response.data.info.pages;
+        page.value++;
+      }
+    } catch (error) {
+      if (search.value == currentSearch) {
+        episodes.value = [];
+      }
+    }
+    loadMore.value = true;
   };
 
-  const loadMoreEpisodes = () => {
-    if (page.value <= numPages.value && verifyBottom() && loadMore.value) {
-      getAllEpisodes();
+  const loadMoreEpisodes = async (ev: InfiniteScrollCustomEvent) => {
+    if (page.value <= numPages.value && loadMore.value) {
+      await getAllEpisodes();
+      ev.target.complete()
     }
   };
 
@@ -57,34 +56,12 @@ export function useEpisodes() {
     getAllEpisodes();
   });
 
-  const verifyBottom = () => {
-    const scrollY = document.getElementById("body")?.scrollTop || 0; // Obtener la posición actual del scroll vertical
-    const alturaTotal = document.getElementById("body")?.scrollHeight || 0; // Altura total del contenido de la página
-    const alturaVentana = window.innerHeight; // Altura visible del navegador
-
-    // Si la suma de la posición actual del scroll y la altura visible del navegador es mayor o igual a la altura total,
-    // entonces hemos alcanzado el tope de abajo
-    return scrollY + alturaVentana >= alturaTotal - 500;
-  };
-
-  onIonViewWillEnter(() => {
-    let body = document.getElementById("body");
-    if (body) {
-      body.scrollTop = 0;
-    }
-
-    body?.addEventListener("scroll", loadMoreEpisodes);
-  });
-
-  onIonViewWillLeave(() => {
-    document
-      .getElementById("body")
-      ?.removeEventListener("scroll", loadMoreEpisodes);
-  });
-
   return {
     getAllEpisodes,
     episodes,
     search,
+    loadMoreEpisodes,
+    page,
+    numPages
   };
 }

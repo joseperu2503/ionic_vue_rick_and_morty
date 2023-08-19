@@ -1,9 +1,9 @@
 import { http } from "@/http/http.service";
-import { ref, onMounted, onBeforeUnmount, watch } from "vue";
+import { ref, watch } from "vue";
 import { GetAllLocationsInterface } from "@/interfaces/location.interface.ts";
 import { useLocationStore } from "@/stores/location";
 import { storeToRefs } from "pinia";
-import { IonPage, onIonViewWillEnter, onIonViewDidEnter, onIonViewWillLeave, onIonViewDidLeave } from '@ionic/vue';
+import { InfiniteScrollCustomEvent } from "@ionic/vue";
 
 export function useLocations() {
   const locationStore = useLocationStore();
@@ -11,35 +11,34 @@ export function useLocations() {
   const { locations, page, numPages, search } = storeToRefs(locationStore);
   const loadMore = ref(true);
 
-  const getAllLocations = () => {
+  const getAllLocations = async () => {
     loadMore.value = false;
     let currentSearch: string = search.value;
-    http
-      .get<GetAllLocationsInterface>(
-        `location?page=${page.value}&name=${currentSearch}`
-      )
-      .then((response) => {
-        if (search.value == currentSearch) {
-          if (page.value == 1) {
-            locations.value = [];
-          }
-          locations.value.push(...response.data.results);
-          numPages.value = response.data.info.pages;
-          page.value++;
-          loadMore.value = true;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        if (search.value == currentSearch) {
+    try {
+      let response = await http
+        .get<GetAllLocationsInterface>(
+          `location?page=${page.value}&name=${currentSearch}`
+        )
+      if (search.value == currentSearch) {
+        if (page.value == 1) {
           locations.value = [];
         }
-      });
+        locations.value.push(...response.data.results);
+        numPages.value = response.data.info.pages;
+        page.value++;
+      }
+    } catch (error) {
+      if (search.value == currentSearch) {
+        locations.value = [];
+      }
+    }
+    loadMore.value = true;
   };
 
-  const loadMoreLocations = () => {
-    if (page.value <= numPages.value && verifyBottom() && loadMore.value) {
-      getAllLocations();
+  const loadMoreLocations = async (ev: InfiniteScrollCustomEvent) => {
+    if (page.value <= numPages.value && loadMore.value) {
+      await getAllLocations();
+      ev.target.complete()
     }
   };
 
@@ -57,34 +56,12 @@ export function useLocations() {
     getAllLocations();
   });
 
-  const verifyBottom = () => {
-    const scrollY = document.getElementById("body")?.scrollTop || 0; // Obtener la posición actual del scroll vertical
-    const alturaTotal = document.getElementById("body")?.scrollHeight || 0; // Altura total del contenido de la página
-    const alturaVentana = window.innerHeight; // Altura visible del navegador
-
-    // Si la suma de la posición actual del scroll y la altura visible del navegador es mayor o igual a la altura total,
-    // entonces hemos alcanzado el tope de abajo
-    return scrollY + alturaVentana >= alturaTotal - 500;
-  };
-
-  onIonViewWillEnter(() => {
-    let body = document.getElementById("body");
-    if (body) {
-      body.scrollTop = 0;
-    }
-
-    body?.addEventListener("scroll", loadMoreLocations);
-  });
-
-  onIonViewWillLeave(() => {
-    document
-      .getElementById("body")
-      ?.removeEventListener("scroll", loadMoreLocations);
-  });
-
   return {
     getAllLocations,
     locations,
     search,
+    loadMoreLocations,
+    page,
+    numPages
   };
 }
