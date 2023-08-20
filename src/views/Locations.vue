@@ -2,7 +2,7 @@
   <ion-page mode="ios">
     <ion-header :translucent="true" class="ion-no-border" >
       <ion-toolbar>
-        <ion-title>Characters</ion-title>
+        <ion-title>Locations</ion-title>
       </ion-toolbar>
       <ion-toolbar>
         <ion-searchbar :animated="true" v-model="search"></ion-searchbar>
