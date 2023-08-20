@@ -15,17 +15,18 @@
 import { Episode } from "@/interfaces/episode.interface";
 import { toRefs } from "vue";
 import { useIonRouter } from '@ionic/vue';
+import { useTabStore } from "@/stores/tab";
+import { storeToRefs } from 'pinia';
 
+const tabStore = useTabStore();
+const { selectedTab } = storeToRefs(tabStore);
 const router = useIonRouter();
 
 const props = defineProps<{ episode: Episode }>();
 const { episode } = toRefs(props);
 
 const goEpisode = () => {
-  router.push({
-    name: "episode",
-    params: { episodeId: episode.value.id },
-  });
+  router.push(`/${selectedTab.value}/episode/${episode.value.id}`);
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <ion-page mode="ios">
-    <ion-header :translucent="true" class="ion-no-border" >
+    <ion-header :translucent="true" class="ion-no-border">
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
@@ -14,8 +14,8 @@
           <div class="flex items-center justify-center" :class="{ 'animate-pulse': !imageLoaded && !imageError }">
             <img src="@/assets/avatar_default.jpeg" class="w-full max-w-xs md:w-72 rounded-md"
               v-if="imageError || (!imageLoaded && !imageError)" />
-            <img :src="character.image" class="w-full max-w-xs md:w-72 rounded-md" @load="onImageLoad" @error="onImageError"
-              v-show="imageLoaded" />
+            <img :src="character.image" class="w-full max-w-xs md:w-72 rounded-md" @load="onImageLoad"
+              @error="onImageError" v-show="imageLoaded" />
           </div>
 
           <div class="mx-auto md:mx-0 w-full max-w-2xl">
@@ -25,8 +25,7 @@
                 :class="[showCharacter ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full']">
                 {{ character.name }}
               </h1>
-              <div
-                :class="[showCharacter ? 'opacity-100' : 'opacity-0']"
+              <div :class="[showCharacter ? 'opacity-100' : 'opacity-0']"
                 class="w-full max-w-xl backdrop-blur-sm bg-black/50 shadow-sm shadow-rick-green-1 rounded-lg py-4 px-8 flex flex-col gap-2 justify-between transition-all duration-700">
                 <div class="flex gap-4 justify-between items-center">
                   <span class="text-rick-3 text-sm sm:text-base">GENDER</span>
@@ -74,13 +73,18 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useRouter, useRoute } from "vue-router";
+import { useRoute } from "vue-router";
+import { useIonRouter } from '@ionic/vue';
 import { useCharacter } from "@/composables/useCharacter";
 import EpisodeItem from "@/components/episode/EpisodeItem.vue";
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonBackButton, IonButtons } from '@ionic/vue';
+import { useTabStore } from "@/stores/tab";
+import { storeToRefs } from 'pinia';
 
+const tabStore = useTabStore();
+const { selectedTab } = storeToRefs(tabStore);
 const route = useRoute();
-const router = useRouter();
+const router = useIonRouter();
 
 const characterId: string = route.params.characterId as string;
 
@@ -94,10 +98,7 @@ const getLocationId = () => {
 
 const goLocation = () => {
   let locationId = getLocationId();
-  router.push({
-    name: "location",
-    params: { locationId: locationId },
-  });
+  router.push(`/${selectedTab.value}/location/${locationId}`);
 };
 
 const imageLoaded = ref(false);
@@ -113,6 +114,5 @@ const onImageError = () => {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
 

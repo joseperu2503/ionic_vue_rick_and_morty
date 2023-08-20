@@ -14,34 +14,52 @@ const router = createRouter({
       children: [
         {
           path: "/characters",
-          name: "characters",
           component: () => import("@/views/Characters.vue"),
         },
         {
-          path: "/characters/:characterId",
-          name: "character",
+          path: "/characters/character/:characterId",
           component: () => import("@/views/Character.vue"),
         },
         {
-          path: "/locations",
-          name: "locations",
-          component: () => import("@/views/Locations.vue"),
-        },
-        {
-          path: "/locations/:locationId",
-          name: "location",
+          path: "/characters/location/:locationId",
           component: () => import("@/views/Location.vue"),
         },
         {
+          path: "/characters/episode/:episodeId",
+          component: () => import("@/views/Episode.vue"),
+        },
+        {
+          path: "/locations",
+          component: () => import("@/views/Locations.vue"),
+        },
+        {
+          path: "/locations/character/:characterId",
+          component: () => import("@/views/Character.vue"),
+        },
+        {
+          path: "/locations/location/:locationId",
+          component: () => import("@/views/Location.vue"),
+        },
+        {
+          path: "/locations/episode/:episodeId",
+          component: () => import("@/views/Episode.vue"),
+        },
+        {
           path: '/episodes',
-          name: 'episodes',
           component: () => import('@/views/Episodes.vue')
         },
         {
-          path: "/episodes/:episodeId",
-          name: "episode",
+          path: "/episodes/episode/:episodeId",
           component: () => import("@/views/Episode.vue"),
-        }
+        },
+        {
+          path: "/episodes/character/:characterId",
+          component: () => import("@/views/Character.vue"),
+        },
+        {
+          path: "/episodes/location/:locationId",
+          component: () => import("@/views/Location.vue"),
+        },
       ]
     }
   ],
