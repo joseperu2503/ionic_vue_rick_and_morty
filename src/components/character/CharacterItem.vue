@@ -38,7 +38,6 @@ const goCharacter = () => {
 };
 
 const onImageLoad = () => {
-  console.log('onImageLoad')
   imageLoaded.value = true;
   imageError.value = false;
 };

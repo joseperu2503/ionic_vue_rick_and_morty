@@ -10,7 +10,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         <CharacterItem v-for="item in characters" :key="item.id" :character="item" />
       </div>
       <ion-infinite-scroll @ionInfinite="loadMoreCharacters" :disabled="page > numPages">
