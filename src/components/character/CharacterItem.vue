@@ -1,15 +1,16 @@
 <template>
-  <div @click="goCharacter()" class="relative cursor-pointer hover:scale-110 transition-all w-full aspect-square"
+  <div @click="goCharacter()"
+    class="relative cursor-pointer hover:scale-110 transition-all w-full aspect-square rounded-2xl overflow-hidden"
     :class="{ 'animate-pulse': !imageLoaded && !imageError }">
-    <img src="@/assets/avatar_default.jpeg" class="rounded-2xl w-full"
-      v-if="imageError || (!imageLoaded && !imageError)" />
-    <img :src="character.image" class="rounded-2xl w-full" @load="onImageLoad" @error="onImageError"
-      v-show="imageLoaded" />
-    <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full rounded-b-2xl">
+
+    <img src="@/assets/avatar_default.jpeg" class="w-full absolute" v-if="imageError || (!imageLoaded && !imageError)" />
+    <ion-img :src="character.image+'ds'" class="w-full h-full absolute " @ionImgWillLoad="onImageLoad"
+      @ionError="onImageError" v-if="!imageError"/>
+    <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
     </div>
-    <div class="absolute bg-gradient-to-t from-black bottom-0 opacity-50 h-2/5 w-full rounded-b-2xl">
+    <div class="absolute bg-gradient-to-t from-black bottom-0 opacity-50 h-2/5 w-full">
     </div>
-    <div class="absolute bottom-0 h-2/5 w-full px-4 flex items-end pb-2 sm:pb-4 rounded-b-2xl">
+    <div class="absolute bottom-0 h-2/5 w-full px-4 flex items-end pb-2 sm:pb-4">
       <h2 class="text-lg sm:text-xl md:text-xl text-rick-white leading-none line-clamp-2">
         {{ character.name }}
       </h2>
@@ -21,6 +22,7 @@
 import { toRefs, ref } from "vue";
 import { useIonRouter } from '@ionic/vue';
 import { Character } from "@/interfaces/character.interface.ts";
+import { IonImg } from '@ionic/vue';
 
 const router = useIonRouter();
 
@@ -37,10 +39,14 @@ const goCharacter = () => {
 };
 
 const onImageLoad = () => {
+  console.log('onImageLoad')
   imageLoaded.value = true;
+  imageError.value = false;
 };
 
 const onImageError = () => {
+  console.log('onImageError')
+
   imageError.value = true;
 };
 </script>
