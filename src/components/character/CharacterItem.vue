@@ -3,8 +3,8 @@
     class="relative cursor-pointer hover:scale-110 transition-all w-full aspect-square rounded-2xl overflow-hidden"
     :class="{ 'animate-pulse': !imageLoaded && !imageError }">
 
-    <img src="@/assets/avatar_default.jpeg" class="w-full absolute" v-if="imageError || (!imageLoaded && !imageError)" />
-    <ion-img :src="character.image+'ds'" class="w-full h-full absolute " @ionImgWillLoad="onImageLoad"
+    <img src="@/assets/avatar_default.jpeg" class="w-full absolute" />
+    <ion-img :src="character.image" class="w-full h-full absolute " @ionImgWillLoad="onImageLoad"
       @ionError="onImageError" v-if="!imageError"/>
     <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
     </div>
