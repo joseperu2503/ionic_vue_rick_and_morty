@@ -1,10 +1,11 @@
 <template>
-  <div @click="goCharacter()" class="relative cursor-pointer hover:scale-110 transition-all w-full aspect-square overflow-hidden rounded-2xl"
+  <div @click="goCharacter()"
+    class="relative cursor-pointer hover:scale-110 transition-all w-full aspect-square rounded-2xl overflow-hidden"
     :class="{ 'animate-pulse': !imageLoaded && !imageError }">
-    <img src="@/assets/avatar_default.jpeg" class="w-full absolute"
-      v-if="imageError || (!imageLoaded && !imageError)" />
-    <img :src="character.image" class="w-full absolute" @load="onImageLoad" @error="onImageError"
-      v-show="imageLoaded"/>
+
+    <img src="@/assets/avatar_default.jpeg" class="w-full absolute" />
+    <ion-img :src="character.image" class="w-full h-full absolute " @ionImgWillLoad="onImageLoad"
+      @ionError="onImageError" v-if="!imageError"/>
     <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
     </div>
     <div class="absolute bg-gradient-to-t from-black bottom-0 opacity-50 h-2/5 w-full">
@@ -20,6 +21,7 @@
 import { toRefs, ref } from "vue";
 import { useIonRouter } from '@ionic/vue';
 import { Character } from "@/interfaces/character.interface.ts";
+import { IonImg } from '@ionic/vue';
 
 const router = useIonRouter();
 
@@ -36,11 +38,14 @@ const goCharacter = () => {
 };
 
 const onImageLoad = () => {
+  console.log('onImageLoad')
   imageLoaded.value = true;
   imageError.value = false;
 };
 
 const onImageError = () => {
+  console.log('onImageError')
+
   imageError.value = true;
 };
 </script>
