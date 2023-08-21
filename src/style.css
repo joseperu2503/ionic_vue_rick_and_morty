@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-ion-content {
-  --background: #303032;
-}
-
 ion-toolbar {
   --background: #303032;
   --min-height: 50px;
@@ -23,10 +19,6 @@ ion-progress-bar {
   --progress-background: white;
   --buffer-background: #94979c4d;
   height: 1px;
-}
-
-ion-searchbar {
-  --background: rgb(242, 242, 242) !important;
 }
 
 ion-spinner{
