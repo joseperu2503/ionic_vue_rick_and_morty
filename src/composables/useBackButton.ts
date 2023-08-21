@@ -12,7 +12,7 @@ export function useBackButton() {
     if (route.path == '/characters') {
       App.exitApp();
     } else {
-      ionRouter.back();
+      router.go(-1);
     }
   });
 }
