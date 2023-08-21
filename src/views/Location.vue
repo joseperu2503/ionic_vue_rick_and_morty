@@ -45,9 +45,3 @@ const { location, getLocation, characters } = useLocation();
 getLocation(locationId);
 
 </script>
-<style scoped>
-ion-toolbar {
-  --background: #303032;
-}
-</style>
-

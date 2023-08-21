@@ -45,8 +45,3 @@ const { episode, getEpisode, characters } = useEpisode();
 getEpisode(episodeId);
 
 </script>
-<style scoped>
-ion-toolbar {
-  --background: #303032;
-}
-</style>
