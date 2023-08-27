@@ -1,8 +1,6 @@
 <template>
   <ion-card>
-    <div
-      class="py-3 px-3 flex flex-col justify-between transition-all cursor-pointer"
-      @click="goLocation()">
+    <div class="py-3 px-3 flex flex-col justify-between transition-all cursor-pointer" @click="goLocation()">
       <div class="text-rick-white text-base">
         {{ location.name }}
       </div>
@@ -23,6 +21,7 @@ import { toRefs } from "vue";
 import { useIonRouter } from '@ionic/vue';
 import { useTabStore } from "@/stores/tab";
 import { storeToRefs } from 'pinia';
+import { IonCard } from '@ionic/vue';
 
 const tabStore = useTabStore();
 const { selectedTab } = storeToRefs(tabStore);
@@ -36,7 +35,7 @@ const goLocation = () => {
 };
 </script>
 <style scoped>
-ion-card{
+ion-card {
   margin: 0;
 }
 </style>

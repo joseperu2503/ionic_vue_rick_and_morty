@@ -11,7 +11,7 @@
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">{{ episode.name }}</ion-title>
+          <ion-title size="large" class="title">{{ episode.name }}</ion-title>
         </ion-toolbar>
       </ion-header>
       <div class="ion-padding">
@@ -48,5 +48,8 @@ getEpisode(episodeId);
 <style scoped>
 .ion-padding{
   padding-top: 0px;
+}
+.title{
+  font-size: 28px;
 }
 </style>

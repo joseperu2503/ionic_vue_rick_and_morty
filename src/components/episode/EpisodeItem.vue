@@ -1,7 +1,6 @@
 <template>
   <ion-card>
-    <div @click="goEpisode"
-      class="text-sm py-3 px-2 flex gap-x-6 justify-between transition-all cursor-pointer">
+    <div @click="goEpisode" class="text-sm py-3 px-2 flex gap-x-6 justify-between transition-all cursor-pointer">
       <div class="text-rick-green-3">
         {{ episode.episode }}
       </div>
@@ -18,6 +17,7 @@ import { toRefs } from "vue";
 import { useIonRouter } from '@ionic/vue';
 import { useTabStore } from "@/stores/tab";
 import { storeToRefs } from 'pinia';
+import { IonCard } from '@ionic/vue';
 
 const tabStore = useTabStore();
 const { selectedTab } = storeToRefs(tabStore);
@@ -31,7 +31,7 @@ const goEpisode = () => {
 };
 </script>
 <style scoped>
-ion-card{
+ion-card {
   margin: 0;
 }
 </style>
