@@ -1,11 +1,11 @@
 <template>
   <ion-page mode="ios">
-    <ion-header :translucent="true" class="ion-no-border" >
+    <ion-header :translucent="true" class="ion-no-border">
       <ion-toolbar>
         <ion-title>Episodes</ion-title>
       </ion-toolbar>
       <ion-toolbar>
-        <ion-searchbar :animated="true" v-model="search"></ion-searchbar>
+        <ion-searchbar v-model="search"></ion-searchbar>
         <!-- <ion-progress-bar type="indeterminate"></ion-progress-bar> -->
       </ion-toolbar>
     </ion-header>
