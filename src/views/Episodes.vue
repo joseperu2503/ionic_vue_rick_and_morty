@@ -10,7 +10,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8">
         <EpisodeItem v-for="item in episodes" :key="item.id" :episode="item" />
       </div>
       <ion-infinite-scroll @ionInfinite="loadMoreEpisodes" :disabled="page > numPages">

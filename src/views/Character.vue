@@ -59,11 +59,11 @@
             <div class="bg-gray-500 h-[0.1px] flex-1"></div>
             <div class="text-rick-white flex items-center gap-3 justify-center">
               <Icon icon="solar:tv-line-duotone" class="h-6 md:h-8 w-auto" />
-              <div class="text-lg sm:text-xl lg:text-2xl">Episodes</div>
+              <div class="text-base">Episodes</div>
             </div>
             <div class="bg-gray-500 h-[0.1px] flex-1"></div>
           </div>
-          <div class="mt-10 md:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="mt-6 md:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8">
             <EpisodeItem v-for="item in episodes" :key="item.id" :episode="item" />
           </div>
         </div>

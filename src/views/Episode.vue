@@ -15,7 +15,7 @@
         </ion-toolbar>
       </ion-header>
       <div class="ion-padding">
-        <div class="flex mb-20 gap-4 items-center justify-start">
+        <div class="flex mb-10 gap-4 items-center justify-start">
           <div class="bg-rick-3 px-2 py-1 rounded-md text-sky-900 text-xs sm:text-base md:text-base font-bold">
             {{ episode.episode }}
           </div>
