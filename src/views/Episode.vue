@@ -45,7 +45,7 @@ const { episode, getEpisode, characters } = useEpisode();
 getEpisode(episodeId);
 
 </script>
-<style>
+<style scoped>
 .ion-padding{
   padding-top: 0px;
 }

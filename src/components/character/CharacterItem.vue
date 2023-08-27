@@ -8,10 +8,8 @@
       v-if="!imageError" />
     <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
     </div>
-    <div class="absolute bg-gradient-to-t from-black bottom-0 opacity-50 h-2/5 w-full">
-    </div>
     <div class="absolute bottom-0 h-2/5 w-full px-4 flex items-end pb-2 sm:pb-4">
-      <h2 class="text-lg sm:text-xl md:text-xl text-rick-white leading-none line-clamp-2">
+      <h2 class="text-sm text-rick-white leading-none truncate">
         {{ character.name }}
       </h2>
     </div>

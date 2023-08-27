@@ -74,10 +74,6 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
-
-  /* --ion-background-color: var(--rick-background-color); */
-  --ion-text-color: #ffffff;
-  --ion-text-color-rgb: 255,255,255;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -241,4 +237,11 @@ http://ionicframework.com/docs/theming/ */
 
 :root {
   --rick-background-color: #202121;
+
+  --ion-background-color: #121212;
+  --ion-background-color-rgb: 18,18,18;
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255,255,255;
+  --ion-card-background: #1c1c1d;
+
 }

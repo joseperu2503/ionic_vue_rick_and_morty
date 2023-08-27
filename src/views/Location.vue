@@ -45,7 +45,7 @@ const { location, getLocation, characters } = useLocation();
 getLocation(locationId);
 
 </script>
-<style>
+<style scoped>
 .ion-padding{
   padding-top: 0px;
 }

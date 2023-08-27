@@ -25,31 +25,34 @@
                 :class="[showCharacter ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full']">
                 {{ character.name }}
               </h1>
-              <div :class="[showCharacter ? 'opacity-100' : 'opacity-0']"
-                class="w-full max-w-xl backdrop-blur-sm bg-black/50 shadow-sm shadow-rick-green-1 rounded-lg py-4 px-8 flex flex-col gap-2 justify-between transition-all duration-700">
-                <div class="flex gap-4 justify-between items-center">
-                  <span class="text-rick-3 text-sm sm:text-base">GENDER</span>
-                  <span class="text-white text-sm sm:text-base text-right"> {{ character.gender }}</span>
-                </div>
-                <div class="flex gap-4 justify-between items-center">
-                  <span class="text-rick-3 text-sm sm:text-base">SPECIE</span>
-                  <span class="text-white text-sm sm:text-base text-right"> {{ character.species }}</span>
-                </div>
-                <div class="flex gap-4 justify-between items-center">
-                  <span class="text-rick-3 text-sm sm:text-base">STATUS</span>
-                  <span class="text-white text-sm sm:text-base text-right"> {{ character.status }}</span>
-                </div>
-                <div class="flex gap-4 justify-between items-center">
-                  <span class="text-rick-3 text-sm sm:text-base">ORIGIN</span>
-                  <span class="text-white text-sm sm:text-base text-right"> {{ character.origin?.name }}</span>
-                </div>
-                <div class="flex gap-4 justify-between items-center" @click="goLocation()">
-                  <span class="text-rick-3 text-sm sm:text-base cursor-pointer hover:underline">LOCATION</span>
-                  <div class="text-white text-sm sm:text-base text-right cursor-pointer hover:underline">
-                    {{ character.location?.name }}
+
+              <ion-card class="w-full">
+                <div :class="[showCharacter ? 'opacity-100' : 'opacity-0']"
+                  class="py-4 px-3 flex flex-col gap-2 justify-between transition-all duration-700">
+                  <div class="flex gap-4 justify-between items-center">
+                    <span class="text-rick-3 text-sm sm:text-base">Gender</span>
+                    <span class="text-white text-sm sm:text-base text-right"> {{ character.gender }}</span>
+                  </div>
+                  <div class="flex gap-4 justify-between items-center">
+                    <span class="text-rick-3 text-sm sm:text-base">Specie</span>
+                    <span class="text-white text-sm sm:text-base text-right"> {{ character.species }}</span>
+                  </div>
+                  <div class="flex gap-4 justify-between items-center">
+                    <span class="text-rick-3 text-sm sm:text-base">Status</span>
+                    <span class="text-white text-sm sm:text-base text-right"> {{ character.status }}</span>
+                  </div>
+                  <div class="flex gap-4 justify-between items-center">
+                    <span class="text-rick-3 text-sm sm:text-base">Origin</span>
+                    <span class="text-white text-sm sm:text-base text-right"> {{ character.origin?.name }}</span>
+                  </div>
+                  <div class="flex gap-4 justify-between items-center" @click="goLocation()">
+                    <span class="text-rick-3 text-sm sm:text-base cursor-pointer hover:underline">Location</span>
+                    <div class="text-white text-sm sm:text-base text-right cursor-pointer hover:underline">
+                      {{ character.location?.name }}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ion-card>
             </div>
           </div>
 
@@ -114,5 +117,9 @@ const onImageError = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+ion-card {
+  margin: 0;
+}
+</style>
 
