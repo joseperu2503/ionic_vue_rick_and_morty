@@ -10,7 +10,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-8">
         <LocationItem v-for="item in locations" :key="item.id" :location="item" />
       </div>
       <ion-infinite-scroll @ionInfinite="loadMoreLocations" :disabled="page > numPages">

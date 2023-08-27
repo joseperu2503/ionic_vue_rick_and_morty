@@ -15,11 +15,11 @@
         </ion-toolbar>
       </ion-header>
       <div class="ion-padding">
-        <div class="flex mb-10 gap-4 items-center justify-start">
-          <div class="bg-rick-3 px-2 py-1 rounded-md text-sky-900 text-xs sm:text-base md:text-base font-bold">
+        <div class="flex mb-10 gap-2 items-center justify-start">
+          <div class="border-rick-3 border px-2 py-1 rounded-lg text-rick-3 text-xs font-medium">
             {{ location.dimension }}
           </div>
-          <div class="bg-rick-green-2 px-2 py-1 rounded-md text-rick-white text-xs sm:text-base md:text-base font-bold">
+          <div class="border-rick-green-1 border px-2 py-1 rounded-lg text-rick-white text-xs font-medium">
             {{ location.type }}
           </div>
         </div>
@@ -45,3 +45,8 @@ const { location, getLocation, characters } = useLocation();
 getLocation(locationId);
 
 </script>
+<style>
+.ion-padding{
+  padding-top: 0px;
+}
+</style>

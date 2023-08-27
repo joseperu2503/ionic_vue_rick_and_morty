@@ -1,14 +1,15 @@
 <template>
-  <div @click="goEpisode"
-    class="backdrop-blur-sm text-sm bg-black/60 hover:bg-black/30 shadow-sm shadow-rick-green-1 rounded-lg py-3 px-2 flex gap-x-6 justify-between transition-all cursor-pointer">
-    <div class="text-white">
-      {{ episode.episode }}
+  <ion-card>
+    <div @click="goEpisode"
+      class="text-sm rounded-lg py-3 px-2 flex gap-x-6 justify-between transition-all cursor-pointer">
+      <div class="text-rick-white">
+        {{ episode.episode }}
+      </div>
+      <div class="text-rick-white text-end truncate">
+        {{ episode.name }}
+      </div>
     </div>
-    <div class="text-white text-end truncate">
-      {{ episode.name }}
-    </div>
-
-  </div>
+  </ion-card>
 </template>
 
 <script setup lang="ts">
@@ -29,5 +30,8 @@ const goEpisode = () => {
   router.push(`/${selectedTab.value}/episode/${episode.value.id}`);
 };
 </script>
-
-<style scoped></style>
+<style scoped>
+ion-card{
+  margin: 0;
+}
+</style>

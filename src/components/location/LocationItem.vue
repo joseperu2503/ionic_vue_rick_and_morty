@@ -1,19 +1,21 @@
 <template>
-  <div
-    class="backdrop-blur-sm bg-black/60 hover:bg-black/30 shadow-sm shadow-rick-2 rounded-lg py-3 px-3 flex flex-col justify-between transition-all cursor-pointer"
-    @click="goLocation()">
-    <div class="text-rick-white text-base">
-      {{ location.name }}
-    </div>
-    <div class="flex mt-4 gap-2 items-center justify-start">
-      <div class="bg-rick-3 px-2 py-1 rounded-md text-sky-900 text-xs font-semibold">
-        {{ location.dimension }}
+  <ion-card>
+    <div
+      class="rounded-lg py-3 px-3 flex flex-col justify-between transition-all cursor-pointer"
+      @click="goLocation()">
+      <div class="text-rick-white text-base">
+        {{ location.name }}
       </div>
-      <div class="bg-rick-green-2 px-2 py-1 rounded-md text-rick-white text-xs font-semibold">
-        {{ location.type }}
+      <div class="flex mt-4 gap-2 items-center justify-start">
+        <div class="border-rick-3 border px-2 py-1 rounded-lg text-rick-3 text-xs font-medium">
+          {{ location.dimension }}
+        </div>
+        <div class="border-rick-green-1 border px-2 py-1 rounded-lg text-rick-white text-xs font-medium">
+          {{ location.type }}
+        </div>
       </div>
     </div>
-  </div>
+  </ion-card>
 </template>
 <script lang="ts" setup>
 import { Location } from "@/interfaces/location.interface";
@@ -33,3 +35,8 @@ const goLocation = () => {
   router.push(`/${selectedTab.value}/location/${location.value.id}`);
 };
 </script>
+<style scoped>
+ion-card{
+  margin: 0;
+}
+</style>
