@@ -39,10 +39,10 @@ const ionTabsWillChange = (e: { tab: string }) => {
 </script>
 <style scoped>
 ion-tab-button {
-  --color-focused: white;
-  --color: rgb(199, 199, 199);
-  --color-selected: white;
-  --color-active: white;
+  --color-focused: var(--rick-white);
+  --color: rgb(158, 158, 158);
+  --color-selected: var(--rick-white);
+  --color-active: var(--rick-white);
   --background: black;
 }
 
