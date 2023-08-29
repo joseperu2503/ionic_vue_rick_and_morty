@@ -6,38 +6,38 @@ import { useSomeCharacters } from "@/composables/useSomeCharacters";
 export function useEpisode() {
 
   const episode = ref<Episode>(initEpisode);
-  const showEpisode = ref<boolean>(false);
+  const loadingEpisode = ref<boolean>(true);
+  const loadingCharacters = ref<boolean>(true);
   const { characters, getSomeCharacters } = useSomeCharacters();
 
-  const getEpisode = (episodeId: string) => {
-    http
-      .get<Episode>(`episode/${episodeId}`)
-      .then((response) => {
-        episode.value = response.data;
-        showEpisode.value = true;
+  const getEpisode = async (episodeId: string) => {
+    loadingEpisode.value = true;
+    loadingCharacters.value = true
 
-        let charactersId: string[] = [];
+    let response = await http.get<Episode>(`episode/${episodeId}`)
+    episode.value = response.data;
+    loadingEpisode.value = false;
 
-        episode.value.characters.map((url) => {
-          const parts = url.split("/");
-          const id = parts[parts.length - 1];
-          charactersId.push(id);
-        });
+    let charactersId: string[] = [];
 
-        if (charactersId.length > 0) {
-          let someCharaters = charactersId.join(",");
-          getSomeCharacters(someCharaters);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    episode.value.characters.map((url) => {
+      const parts = url.split("/");
+      const id = parts[parts.length - 1];
+      charactersId.push(id);
+    });
+
+    if (charactersId.length > 0) {
+      let someCharaters = charactersId.join(",");
+      await getSomeCharacters(someCharaters);
+      loadingCharacters.value = false
+    }
   };
 
   return {
     getEpisode,
     episode,
-    showEpisode,
+    loadingEpisode,
+    loadingCharacters,
     characters
   };
 }

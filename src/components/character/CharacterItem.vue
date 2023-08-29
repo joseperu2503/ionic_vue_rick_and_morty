@@ -1,6 +1,6 @@
 <template>
   <div @click="goCharacter()"
-    class="relative cursor-pointer transition-all w-full aspect-square rounded-2xl overflow-hidden"
+    class="relative w-full aspect-square rounded-2xl overflow-hidden"
     :class="{ 'animate-pulse': !imageLoaded && !imageError }">
 
     <img src="@/assets/avatar_default.jpeg" class="w-full absolute" />
