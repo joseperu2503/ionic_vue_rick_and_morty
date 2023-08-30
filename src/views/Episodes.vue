@@ -6,13 +6,16 @@
       </ion-toolbar>
       <ion-toolbar>
         <ion-searchbar v-model="search"></ion-searchbar>
-        <!-- <ion-progress-bar type="indeterminate"></ion-progress-bar> -->
+        <ion-progress-bar type="indeterminate" v-if="loading && page == 1"></ion-progress-bar>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8">
-        <EpisodeItem v-for="item in episodes" :key="item.id" :episode="item" />
-      </div>
+      <transition name="fade" mode="out-in">
+        <EpisodesSkeleton v-if="loading && page == 1" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8" v-else>
+          <EpisodeItem v-for="item in episodes" :key="item.id" :episode="item" />
+        </div>
+      </transition>
       <ion-infinite-scroll @ionInfinite="loadMoreEpisodes" :disabled="page > numPages">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
       </ion-infinite-scroll>
@@ -25,8 +28,18 @@
 import { useEpisodes } from "@/composables/useEpisodes";
 import EpisodeItem from "@/components/episode/EpisodeItem.vue";
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonProgressBar, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
+import EpisodesSkeleton from "@/components/episode/EpisodesSkeleton.vue";
 
-const { episodes, search, loadMoreEpisodes, page, numPages } = useEpisodes();
+const { episodes, search, loadMoreEpisodes, page, numPages, loading } = useEpisodes();
 </script>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
 
-<style scoped></style>
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

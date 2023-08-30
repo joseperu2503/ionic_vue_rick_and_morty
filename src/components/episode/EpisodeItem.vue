@@ -1,6 +1,6 @@
 <template>
   <ion-card>
-    <div @click="goEpisode" class="text-sm py-3 px-2 flex gap-x-6 justify-between transition-all cursor-pointer">
+    <div @click="goEpisode" class="text-sm py-3 px-2 flex gap-x-6 justify-between">
       <div class="text-rick-green-3">
         {{ episode.episode }}
       </div>

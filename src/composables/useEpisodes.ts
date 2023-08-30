@@ -9,10 +9,10 @@ export function useEpisodes() {
   const episodeStore = useEpisodeStore();
 
   const { episodes, page, numPages, search } = storeToRefs(episodeStore);
-  const loadMore = ref(true);
+  const loading = ref(false);
 
   const getAllEpisodes = async () => {
-    loadMore.value = false;
+    loading.value = true;
     let currentSearch: string = search.value;
     try {
       let response = await http
@@ -32,11 +32,11 @@ export function useEpisodes() {
         episodes.value = [];
       }
     }
-    loadMore.value = true;
+    loading.value = false;
   };
 
   const loadMoreEpisodes = async (ev: InfiniteScrollCustomEvent) => {
-    if (page.value <= numPages.value && loadMore.value) {
+    if (page.value <= numPages.value && !loading.value) {
       await getAllEpisodes();
       ev.target.complete()
     }
@@ -62,6 +62,7 @@ export function useEpisodes() {
     search,
     loadMoreEpisodes,
     page,
-    numPages
+    numPages,
+    loading
   };
 }

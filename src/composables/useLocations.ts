@@ -9,7 +9,7 @@ export function useLocations() {
   const locationStore = useLocationStore();
 
   const { locations, page, numPages, search } = storeToRefs(locationStore);
-  const loading = ref(true);
+  const loading = ref(false);
 
   const getAllLocations = async () => {
     loading.value = true;
