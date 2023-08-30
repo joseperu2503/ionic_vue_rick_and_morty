@@ -29,8 +29,8 @@ export function useLocation() {
     if (charactersId.length > 0) {
       let someCharacters = charactersId.join(",");
       await getSomeCharacters(someCharacters);
-      loadingCharacters.value = false
     }
+    loadingCharacters.value = false
   };
 
   return {

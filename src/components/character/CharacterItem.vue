@@ -42,8 +42,6 @@ const onImageLoad = () => {
 };
 
 const onImageError = () => {
-  console.log('onImageError')
-
   imageError.value = true;
 };
 </script>

@@ -9,10 +9,10 @@ export function useLocations() {
   const locationStore = useLocationStore();
 
   const { locations, page, numPages, search } = storeToRefs(locationStore);
-  const loadMore = ref(true);
+  const loading = ref(true);
 
   const getAllLocations = async () => {
-    loadMore.value = false;
+    loading.value = true;
     let currentSearch: string = search.value;
     try {
       let response = await http
@@ -32,11 +32,11 @@ export function useLocations() {
         locations.value = [];
       }
     }
-    loadMore.value = true;
+    loading.value = false;
   };
 
   const loadMoreLocations = async (ev: InfiniteScrollCustomEvent) => {
-    if (page.value <= numPages.value && loadMore.value) {
+    if (page.value <= numPages.value && !loading.value) {
       await getAllLocations();
       ev.target.complete()
     }
@@ -62,6 +62,7 @@ export function useLocations() {
     search,
     loadMoreLocations,
     page,
-    numPages
+    numPages,
+    loading
   };
 }

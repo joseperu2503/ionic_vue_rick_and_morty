@@ -1,6 +1,6 @@
 <template>
   <ion-card>
-    <div class="py-3 px-3 flex flex-col justify-between transition-all cursor-pointer" @click="goLocation()">
+    <div class="py-3 px-3 flex flex-col justify-between transition-all" @click="goLocation()">
       <div class="text-rick-white text-base">
         {{ location.name }}
       </div>

@@ -29,8 +29,8 @@ export function useEpisode() {
     if (charactersId.length > 0) {
       let someCharaters = charactersId.join(",");
       await getSomeCharacters(someCharaters);
-      loadingCharacters.value = false
     }
+    loadingCharacters.value = false
   };
 
   return {
