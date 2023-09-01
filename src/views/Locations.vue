@@ -31,13 +31,12 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonProgressBar, I
 const { locations, search, loadMoreLocations, page, numPages, loading } = useLocations();
 </script>
 <style scoped>
-.fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 
-.fade-enter,
-.fade-leave-to {
+.fade-enter-to,
+.fade-leave {
   opacity: 0;
 }
 </style>

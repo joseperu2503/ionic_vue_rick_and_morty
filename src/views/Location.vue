@@ -34,7 +34,7 @@
             </div>
           </template>
         </div>
-        <CharacterSkeleton v-if="loadingCharacters" />
+        <CharactersSkeleton v-if="loadingCharacters" />
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" v-else>
           <CharacterItem v-for="item in characters" :key="item.id" :character="item" />
         </div>
@@ -47,7 +47,7 @@ import CharacterItem from "@/components/character/CharacterItem.vue";
 import { useLocation } from "@/composables/useLocation";
 import { useRoute } from "vue-router";
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonBackButton, IonButtons } from '@ionic/vue';
-import CharacterSkeleton from "@/components/shared/CharacterSkeleton.vue";
+import CharactersSkeleton from "@/components/character/CharactersSkeleton.vue";
 
 const route = useRoute();
 
