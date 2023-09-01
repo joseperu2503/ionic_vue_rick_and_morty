@@ -1,6 +1,6 @@
 <template>
-  <ion-card>
-    <div @click="goEpisode" class="text-sm py-3 px-2 flex gap-x-6 justify-between">
+  <ion-card @click="goEpisode" class="ion-activatable ripple-parent">
+    <div class="text-sm py-3 px-2 flex gap-x-6 justify-between">
       <div class="text-rick-green-3">
         {{ episode.episode }}
       </div>
@@ -8,13 +8,14 @@
         {{ episode.name }}
       </div>
     </div>
+    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
   </ion-card>
 </template>
 
 <script setup lang="ts">
 import { Episode } from "@/interfaces/episode.interface";
 import { toRefs } from "vue";
-import { useIonRouter } from '@ionic/vue';
+import { useIonRouter, IonRippleEffect  } from '@ionic/vue';
 import { useTabStore } from "@/stores/tab";
 import { storeToRefs } from 'pinia';
 import { IonCard } from '@ionic/vue';
@@ -30,8 +31,3 @@ const goEpisode = () => {
   router.push(`/${selectedTab.value}/episode/${episode.value.id}`);
 };
 </script>
-<style scoped>
-ion-card {
-  margin: 0;
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
-  <ion-card>
-    <div class="py-3 px-3 flex flex-col justify-between transition-all" @click="goLocation()">
+  <ion-card @click="goLocation" class="ion-activatable ripple-parent">
+    <div class="py-3 px-3 flex flex-col justify-between transition-all">
       <div class="text-rick-white text-base">
         {{ location.name }}
       </div>
@@ -13,12 +13,13 @@
         </div>
       </div>
     </div>
+    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
   </ion-card>
 </template>
 <script lang="ts" setup>
 import { Location } from "@/interfaces/location.interface";
 import { toRefs } from "vue";
-import { useIonRouter } from '@ionic/vue';
+import { useIonRouter, IonRippleEffect } from '@ionic/vue';
 import { useTabStore } from "@/stores/tab";
 import { storeToRefs } from 'pinia';
 import { IonCard } from '@ionic/vue';
@@ -34,8 +35,3 @@ const goLocation = () => {
   router.push(`/${selectedTab.value}/location/${location.value.id}`);
 };
 </script>
-<style scoped>
-ion-card {
-  margin: 0;
-}
-</style>

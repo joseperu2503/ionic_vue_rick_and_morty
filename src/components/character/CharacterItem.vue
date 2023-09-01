@@ -1,23 +1,25 @@
 <template>
-  <div @click="goCharacter()"
-    class="relative w-full aspect-square rounded-2xl overflow-hidden"
-    :class="{ 'animate-pulse': !imageLoaded && !imageError }">
+  <ion-card @click="goCharacter" class="ion-activatable ripple-parent">
+    <div class="relative w-full aspect-square rounded-2xl overflow-hidden"
+      :class="{ 'animate-pulse': !imageLoaded && !imageError }">
 
-    <img src="@/assets/avatar_default.jpeg" class="w-full absolute" />
-    <ion-img :src="character.image" class="w-full h-full absolute " @ionImgWillLoad="onImageLoad" @ionError="onImageError"
-      v-if="!imageError" />
-    <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
+      <img src="@/assets/avatar_default.jpeg" class="w-full absolute" />
+      <ion-img :src="character.image" class="w-full h-full absolute " @ionImgWillLoad="onImageLoad"
+        @ionError="onImageError" v-if="!imageError" />
+      <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
+      </div>
+      <div class="absolute bottom-0 h-2/5 w-full px-4 flex items-end pb-2 sm:pb-4">
+        <h2 class="text-sm text-rick-white leading-none truncate">
+          {{ character.name }}
+        </h2>
+      </div>
     </div>
-    <div class="absolute bottom-0 h-2/5 w-full px-4 flex items-end pb-2 sm:pb-4">
-      <h2 class="text-sm text-rick-white leading-none truncate">
-        {{ character.name }}
-      </h2>
-    </div>
-  </div>
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-card>
 </template>
 <script lang="ts" setup>
 import { toRefs, ref } from "vue";
-import { useIonRouter } from '@ionic/vue';
+import { useIonRouter, IonCard, IonRippleEffect } from '@ionic/vue';
 import { Character } from "@/interfaces/character.interface.ts";
 import { IonImg } from '@ionic/vue';
 import { useTabStore } from "@/stores/tab";

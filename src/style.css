@@ -24,3 +24,7 @@ ion-progress-bar {
 ion-spinner{
   --color: white !important;
 }
+
+ion-card {
+  margin: 0;
+}

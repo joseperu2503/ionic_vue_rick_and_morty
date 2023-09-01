@@ -13,9 +13,3 @@
 import { IonCard } from '@ionic/vue';
 
 </script>
-<style scoped>
-ion-card {
-  margin: 0;
-}
-</style>
-
