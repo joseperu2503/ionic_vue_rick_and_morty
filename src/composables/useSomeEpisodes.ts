@@ -5,19 +5,13 @@ import { Episode } from "@/interfaces/episode.interface.ts";
 export function useSomeEpisodes() {
   const episodes = ref<Episode[]>([]);
 
-  const getSomeEpisodes = (someEpisodes: string) => {
-    http
-      .get<Episode | Episode[]>(`episode/${someEpisodes}`)
-      .then((response) => {
-        if (Array.isArray(response.data)) {
-          episodes.value = response.data;
-        } else {
-          episodes.value = [response.data];
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const getSomeEpisodes = async (someEpisodes: string) => {
+    let response = await http.get<Episode | Episode[]>(`episode/${someEpisodes}`)
+    if (Array.isArray(response.data)) {
+      episodes.value = response.data;
+    } else {
+      episodes.value = [response.data];
+    }
   };
 
   return {
