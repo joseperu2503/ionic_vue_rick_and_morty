@@ -24,6 +24,7 @@
     "@ionic/vue-router": "^7.0.0",
     "axios": "^1.4.0",
     "capacitor-plugin-safe-area": "^2.0.5",
+    "cordova-plugin-screen-orientation": "^3.0.3",
     "ionicons": "^7.0.0",
     "pinia": "^2.1.6",
     "vue": "^3.2.45",

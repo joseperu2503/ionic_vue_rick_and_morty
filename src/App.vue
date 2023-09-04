@@ -10,8 +10,9 @@ import { useBackButton } from '@/composables/useBackButton';
 import { StatusBar } from '@capacitor/status-bar';
 import { SafeArea } from 'capacitor-plugin-safe-area';
 import { isPlatform } from '@ionic/vue';
-import { onUnmounted } from 'vue';
+
 useBackButton()
+
 if (isPlatform('capacitor')) {
   StatusBar.setOverlaysWebView({ overlay: true });
 }
@@ -23,12 +24,11 @@ interface SafeAreaInterface {
   left: number;
 }
 
-SafeArea.getSafeAreaInsets().then(({ insets }) => {
-  setInsets(insets)
-});
+//bloqueo de orientacion
+window.screen.orientation.lock('portrait');
 
-const eventListener = SafeArea.addListener('safeAreaChanged', data => {
-  const { insets } = data;
+//seteo del safe area
+SafeArea.getSafeAreaInsets().then(({ insets }) => {
   setInsets(insets)
 });
 
@@ -40,12 +40,6 @@ const setInsets = (insets: SafeAreaInterface) => {
     );
   }
 }
-
-onUnmounted(() => {
-  if (eventListener) {
-    eventListener.remove();
-  }
-})
 
 </script>
 
