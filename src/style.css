@@ -28,3 +28,7 @@ ion-spinner{
 ion-card {
   margin: 0;
 }
+
+.safe-area-top{
+  padding-top: var(--safe-area-top) !important;
+}

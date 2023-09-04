@@ -1,7 +1,7 @@
 <template>
   <ion-page mode="ios">
     <ion-header :translucent="true" class="ion-no-border">
-      <ion-toolbar>
+      <ion-toolbar class="safe-area-top">
         <ion-title>Locations</ion-title>
       </ion-toolbar>
       <ion-toolbar>
