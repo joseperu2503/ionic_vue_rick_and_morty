@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Tabs from "@/components/shared/Tabs.vue";
+import { useAuth } from '@/composables/useAuth';
+import { storeToRefs } from 'pinia';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -66,7 +68,8 @@ const router = createRouter({
 });
 
 router.beforeEach(async () => {
-
+  const { verifyAuth } = useAuth();
+  verifyAuth()
 });
 
 export default router;
