@@ -42,14 +42,7 @@ export function useLocations() {
     }
   };
 
-  if (search.value != "") {
-    search.value = "";
-    page.value = 1;
-    locations.value = [];
-  }
-  if (locations.value.length == 0) {
-    getAllLocations();
-  }
+  getAllLocations();
 
   watch(search, () => {
     page.value = 1;

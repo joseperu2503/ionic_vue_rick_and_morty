@@ -32,3 +32,12 @@ ion-card {
 .safe-area-top{
   padding-top: var(--safe-area-top) !important;
 }
+
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter-to,
+.fade-leave {
+  opacity: 0;
+}

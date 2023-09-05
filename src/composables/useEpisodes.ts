@@ -42,14 +42,7 @@ export function useEpisodes() {
     }
   };
 
-  if (search.value != "") {
-    search.value = "";
-    page.value = 1;
-    episodes.value = [];
-  }
-  if (episodes.value.length == 0) {
-    getAllEpisodes();
-  }
+  getAllEpisodes();
 
   watch(search, () => {
     page.value = 1;

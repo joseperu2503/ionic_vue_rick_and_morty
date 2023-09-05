@@ -155,14 +155,4 @@ const onImageError = () => {
   imageError.value = true;
 };
 </script>
-<style scoped>
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter-to,
-.fade-leave {
-  opacity: 0;
-}
-</style>
 

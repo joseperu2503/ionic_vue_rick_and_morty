@@ -5,7 +5,7 @@
         <ion-title>Locations</ion-title>
       </ion-toolbar>
       <ion-toolbar>
-        <ion-searchbar v-model="search"></ion-searchbar>
+        <ion-searchbar v-model="search" @keydown.enter="hideKeyboard" @ionClear="hideKeyboard"></ion-searchbar>
         <ion-progress-bar type="indeterminate" v-if="loading && page == 1"></ion-progress-bar>
       </ion-toolbar>
     </ion-header>
@@ -27,16 +27,11 @@ import LocationItem from "@/components/location/LocationItem.vue";
 import LocationsSkeleton from "@/components/location/LocationsSkeleton.vue";
 import { useLocations } from "@/composables/useLocations";
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonProgressBar, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
+import { useKeyboard } from "@/composables/useKeyboard";
 
 const { locations, search, loadMoreLocations, page, numPages, loading } = useLocations();
-</script>
-<style scoped>
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
 
-.fade-enter-to,
-.fade-leave {
-  opacity: 0;
+const hideKeyboard = () => {
+  useKeyboard().hideKeyboard()
 }
-</style>
+</script>

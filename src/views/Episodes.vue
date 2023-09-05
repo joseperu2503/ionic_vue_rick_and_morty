@@ -5,7 +5,7 @@
         <ion-title>Episodes</ion-title>
       </ion-toolbar>
       <ion-toolbar>
-        <ion-searchbar v-model="search"></ion-searchbar>
+        <ion-searchbar v-model="search" @keydown.enter="hideKeyboard" @ionClear="hideKeyboard" />
         <ion-progress-bar type="indeterminate" v-if="loading && page == 1"></ion-progress-bar>
       </ion-toolbar>
     </ion-header>
@@ -29,16 +29,12 @@ import { useEpisodes } from "@/composables/useEpisodes";
 import EpisodeItem from "@/components/episode/EpisodeItem.vue";
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonProgressBar, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
 import EpisodesSkeleton from "@/components/episode/EpisodesSkeleton.vue";
+import { useKeyboard } from "@/composables/useKeyboard";
 
 const { episodes, search, loadMoreEpisodes, page, numPages, loading } = useEpisodes();
-</script>
-<style scoped>
-.fade-leave-active {
-  transition: opacity 0.2s;
+
+const hideKeyboard = () => {
+  useKeyboard().hideKeyboard()
 }
 
-.fade-enter-to,
-.fade-leave {
-  opacity: 0;
-}
-</style>
+</script>

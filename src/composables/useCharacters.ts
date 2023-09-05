@@ -9,10 +9,10 @@ export function useCharacters() {
   const characterStore = useCharacterStore();
 
   const { characters, page, numPages, search } = storeToRefs(characterStore);
-  const loadMore = ref(true);
+  const loading = ref(true);
 
   const getAllCharacters = async () => {
-    loadMore.value = false;
+    loading.value = true;
     let currentSearch: string = search.value;
     try {
       let response = await http
@@ -32,24 +32,17 @@ export function useCharacters() {
         characters.value = [];
       }
     }
-    loadMore.value = true;
+    loading.value = false;
   };
 
   const loadMoreCharacters = async (ev: InfiniteScrollCustomEvent) => {
-    if (page.value <= numPages.value && loadMore.value) {
+    if (page.value <= numPages.value && !loading.value) {
       await getAllCharacters();
       ev.target.complete()
     }
   };
 
-  if (search.value != "") {
-    search.value = "";
-    page.value = 1;
-    characters.value = [];
-  }
-  if (characters.value.length == 0) {
-    getAllCharacters();
-  }
+  getAllCharacters();
 
   watch(search, () => {
     page.value = 1;
@@ -62,7 +55,8 @@ export function useCharacters() {
     search,
     loadMoreCharacters,
     page,
-    numPages
+    numPages,
+    loading
   };
 }
 

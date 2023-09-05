@@ -14,7 +14,11 @@ import { isPlatform } from '@ionic/vue';
 useBackButton()
 
 if (isPlatform('capacitor')) {
+  //statusbar transparente
   StatusBar.setOverlaysWebView({ overlay: true });
+
+  //bloqueo de orientacion
+  window.screen.orientation.lock('portrait');
 }
 
 interface SafeAreaInterface {
@@ -23,9 +27,6 @@ interface SafeAreaInterface {
   bottom: number;
   left: number;
 }
-
-//bloqueo de orientacion
-window.screen.orientation.lock('portrait');
 
 //seteo del safe area
 SafeArea.getSafeAreaInsets().then(({ insets }) => {
