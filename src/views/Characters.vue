@@ -1,9 +1,7 @@
 <template>
   <ion-page mode="ios">
     <ion-header :translucent="true" class="ion-no-border">
-      <ion-toolbar class="safe-area-top">
-        <ion-title>Characters</ion-title>
-      </ion-toolbar>
+      <Appbar title="Characters" />
       <ion-toolbar>
         <ion-searchbar v-model="search" @keydown.enter="hideKeyboard" @ionClear="hideKeyboard"></ion-searchbar>
         <ion-progress-bar type="indeterminate" v-if="loading && page == 1"></ion-progress-bar>
@@ -26,9 +24,10 @@
 <script lang="ts" setup>
 import CharacterItem from "@/components/character/CharacterItem.vue";
 import { useCharacters } from "@/composables/useCharacters";
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonProgressBar, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
+import { IonContent, IonHeader, IonToolbar, IonPage, IonProgressBar, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
 import { useKeyboard } from "@/composables/useKeyboard";
 import CharactersSkeleton from "@/components/character/CharactersSkeleton.vue";
+import Appbar from "@/components/shared/Appbar.vue";
 
 const { characters, search, loadMoreCharacters, page, numPages, loading } = useCharacters();
 const hideKeyboard = () => {

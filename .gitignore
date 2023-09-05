@@ -30,3 +30,5 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+environments/.env.development
+environments/.env.production

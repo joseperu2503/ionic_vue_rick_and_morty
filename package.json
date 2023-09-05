@@ -25,8 +25,11 @@
     "axios": "^1.4.0",
     "capacitor-plugin-safe-area": "^2.0.5",
     "cordova-plugin-screen-orientation": "^3.0.3",
+    "dotenv": "^16.3.1",
     "ionicons": "^7.0.0",
+    "jwt-decode": "^3.1.2",
     "pinia": "^2.1.6",
+    "typescript-cookie": "^1.0.6",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
