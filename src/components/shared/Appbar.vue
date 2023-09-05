@@ -31,4 +31,10 @@ ion-button.profile {
   --background: #5CAD4A;
   --background-activated: #208D45;
 }
+
+ion-toolbar {
+  --padding-end: 12px;
+  --padding-start: 12px;
+
+}
 </style>

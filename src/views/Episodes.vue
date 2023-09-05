@@ -1,9 +1,7 @@
 <template>
   <ion-page mode="ios">
     <ion-header :translucent="true" class="ion-no-border">
-      <ion-toolbar class="safe-area-top">
-        <ion-title>Episodes</ion-title>
-      </ion-toolbar>
+      <Appbar title="Episodes" />
       <ion-toolbar>
         <ion-searchbar v-model="search" @keydown.enter="hideKeyboard" @ionClear="hideKeyboard" />
         <ion-progress-bar type="indeterminate" v-if="loading && page == 1"></ion-progress-bar>
@@ -30,6 +28,7 @@ import EpisodeItem from "@/components/episode/EpisodeItem.vue";
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonProgressBar, IonSearchbar, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
 import EpisodesSkeleton from "@/components/episode/EpisodesSkeleton.vue";
 import { useKeyboard } from "@/composables/useKeyboard";
+import Appbar from "@/components/shared/Appbar.vue";
 
 const { episodes, search, loadMoreEpisodes, page, numPages, loading } = useEpisodes();
 

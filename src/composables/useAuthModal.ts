@@ -63,9 +63,9 @@ export function useAuthModal() {
     loading.value = true
     try {
       let response = await authApi.post("/login", loginForm.value)
+      closeAuthModal()
       saveToken(response.data.access_token)
       verifyAuth()
-      closeAuthModal()
       getFavoriteCharacters()
     } catch (error: any) {
       if (error.response?.status === 422) {
