@@ -8,11 +8,12 @@
         <Icon icon="material-symbols:favorite-outline" class="w-6 h-6 text-rick-white" @click="addFavoriteCharacter()"
           v-if="!isFavorite" />
       </div>
-      <transition name="fade" mode="out-in" @click="goCharacter">
+      <transition name="fade" @click="goCharacter">
         <img :src="character.image" class="w-full h-full absolute " @load="onImageLoad" @error="onImageError"
           v-if="!imageError" />
         <img src="@/assets/avatar_default.jpeg" class="w-full absolute" v-else />
       </transition>
+
       <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
       </div>
       <div class="absolute bottom-0 h-2/5 w-full px-4 flex items-end pb-2 sm:pb-4" @click="goCharacter">

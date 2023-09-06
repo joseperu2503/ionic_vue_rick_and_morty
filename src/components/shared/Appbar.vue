@@ -30,6 +30,7 @@ const { openAuthModal } = useAuthModal()
 ion-button.profile {
   --background: #5CAD4A;
   --background-activated: #208D45;
+  --color: #F0F2EB;
 }
 
 ion-toolbar {
