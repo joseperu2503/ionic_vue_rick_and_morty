@@ -17,35 +17,44 @@
       class="flex flex-col justify-center h-full ion-padding bg-gradient-to-t from-black from-20% via-transparent via-60%">
       <template v-if="!user">
         <transition name="fade-form" mode="out-in">
-          <div v-if="form == 'login'">
-            <form class="flex flex-col gap-10" @keydown.enter="login">
+          <div v-if="form == 'login'" class="h-full flex flex-col justify-between">
+            <div class=" w-full">
+            </div>
+            <div>
+              <form class="flex flex-col gap-10" @keydown.enter="login">
+                <div>
+                  <ion-input label-placement="floating" label="Email" name="email" type="email" v-model="loginForm.email"
+                    class="pr-[55px]" fill="outline" mode="md"
+                    :class="{ 'ion-invalid ion-touched': !!loginErrors.email?.[0] }" :error-text="loginErrors.email?.[0]">
+
+                  </ion-input>
+                </div>
+                <div class="relative">
+                  <ion-input label-placement="floating" label="Password" name="password"
+                    :type="showPassword ? 'text' : 'password'" v-model="loginForm.password" fill="outline" mode="md"
+                    class="password" :class="{ 'ion-invalid ion-touched': !!loginErrors.password?.[0] }"
+                    :error-text="loginErrors.password?.[0]">
+
+                  </ion-input>
+                  <ion-button slot="end" fill="clear" class="absolute top-0 right-0 mt-3.5 z-10" size="small"
+                    @click="showPassword = !showPassword">
+                    <ion-icon slot="icon-only" :icon="eyeOutline" color="light" v-if="showPassword"></ion-icon>
+                    <ion-icon slot="icon-only" :icon="eyeOffOutline" color="light" v-if="!showPassword"></ion-icon>
+                  </ion-button>
+                </div>
+              </form>
+              <ion-button expand="block" class="mt-20 submit" @click="login" :disabled="loading">Login</ion-button>
+              <div class="flex items-center text-sm gap-2 mt-8 justify-center">
+                <span class="text-rick-white ">Don't have an account?</span>
+                <button :disabled="loading" class="text-rick-green-3 font-semibold" @click="toggleForm">Signup
+                  now</button>
+              </div>
+            </div>
+            <div class="flex justify-center mb-8">
               <div>
-                <ion-input label-placement="floating" label="Email" name="email" type="email" v-model="loginForm.email"
-                  class="pr-[55px]" fill="outline" mode="md"
-                  :class="{ 'ion-invalid ion-touched': !!loginErrors.email?.[0] }" :error-text="loginErrors.email?.[0]">
-
-                </ion-input>
+                <div class="text-[10px] text-rick-white">Powered by</div>
+                <img src="@/assets/joseperez-logo.svg" alt="joseperez-icon" class="w-28">
               </div>
-              <div class="relative">
-                <ion-input label-placement="floating" label="Password" name="password"
-                  :type="showPassword ? 'text' : 'password'" v-model="loginForm.password" fill="outline" mode="md"
-                  class="password" :class="{ 'ion-invalid ion-touched': !!loginErrors.password?.[0] }"
-                  :error-text="loginErrors.password?.[0]">
-
-                </ion-input>
-                <ion-button slot="end" fill="clear" class="absolute top-0 right-0 mt-3.5 z-10" size="small"
-                  @click="showPassword = !showPassword">
-                  <ion-icon slot="icon-only" :icon="eyeOutline" color="light" v-if="showPassword"></ion-icon>
-                  <ion-icon slot="icon-only" :icon="eyeOffOutline" color="light" v-if="!showPassword"></ion-icon>
-                </ion-button>
-              </div>
-            </form>
-            <ion-button expand="block" class="mt-20 submit" @click="login" :disabled="loading">Login</ion-button>
-            <div class="flex items-center text-sm gap-2 mt-8 justify-center">
-              <span class="text-rick-white ">Don't have an account?</span>
-              <button :disabled="loading" class="text-rick-green-3 font-semibold"
-                @click="toggleForm">Signup
-                now</button>
             </div>
           </div>
           <div v-else>
@@ -95,8 +104,7 @@
             <ion-button expand="block" class="mt-20 submit" @click="register" :disabled="loading">Sig Up</ion-button>
             <div class="flex items-center text-sm gap-2 mt-8 justify-center">
               <span class="text-rick-white ">Have an account?</span>
-              <button :disabled="loading" class="text-rick-green-3 font-semibold"
-                @click="toggleForm">Login here</button>
+              <button :disabled="loading" class="text-rick-green-3 font-semibold" @click="toggleForm">Login here</button>
             </div>
           </div>
         </transition>
@@ -123,9 +131,6 @@
 import {
   IonContent,
   IonHeader,
-  IonSegment,
-  IonSegmentButton,
-  IonLabel,
   IonToolbar,
   IonButtons,
   IonButton,
