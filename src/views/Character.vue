@@ -6,6 +6,18 @@
           <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>{{ character.name }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button>
+            <Icon icon="tdesign:loading" class="w-7 h-7 text-rick-white animate-spin"
+              v-if="settingFavorite || loadingFavoriteCharacters" />
+            <template v-else>
+              <Icon icon="material-symbols:favorite" class="w-7 h-7 text-rick-white" @click="removeFavoriteCharacter()"
+                v-if="isFavorite" />
+              <Icon icon="material-symbols:favorite-outline" class="w-7 h-7 text-rick-white"
+                @click="addFavoriteCharacter()" v-if="!isFavorite" />
+            </template>
+          </ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -117,10 +129,11 @@ import { useRoute } from "vue-router";
 import { useIonRouter, IonCard } from '@ionic/vue';
 import { useCharacter } from "@/composables/useCharacter";
 import EpisodeItem from "@/components/episode/EpisodeItem.vue";
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonBackButton, IonButtons } from '@ionic/vue';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonBackButton, IonButtons, IonButton } from '@ionic/vue';
 import { useTabStore } from "@/stores/tab";
 import { storeToRefs } from 'pinia';
 import EpisodesSkeleton from "@/components/episode/EpisodesSkeleton.vue";
+import { useFavorites } from '@/composables/useFavorites';
 
 const tabStore = useTabStore();
 const { selectedTab } = storeToRefs(tabStore);
@@ -154,5 +167,8 @@ const onImageLoad = () => {
 const onImageError = () => {
   imageError.value = true;
 };
+
+const { addFavoriteCharacter, removeFavoriteCharacter, isFavorite, settingFavorite, loadingFavoriteCharacters } = useFavorites(parseInt(characterId));
+
 </script>
 

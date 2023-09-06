@@ -2,11 +2,15 @@
   <ion-card class="ion-activatable ripple-parent">
     <div class="relative w-full aspect-square rounded-2xl overflow-hidden"
       :class="{ 'animate-pulse': !imageLoaded && !imageError }">
-      <div class="absolute right-1 top-1 p-1 bg-black/40 rounded-full z-10">
-        <Icon icon="material-symbols:favorite" class="w-6 h-6 text-rick-white" @click="removeFavoriteCharacter()"
-          v-if="isFavorite" />
-        <Icon icon="material-symbols:favorite-outline" class="w-6 h-6 text-rick-white" @click="addFavoriteCharacter()"
-          v-if="!isFavorite" />
+      <div class="absolute right-1 top-1 p-1 bg-black/40 rounded-full z-10 opacity-80">
+        <Icon icon="tdesign:loading" class="w-7 h-7 text-rick-white animate-spin"
+          v-if="settingFavorite || loadingFavoriteCharacters" />
+        <template v-else>
+          <Icon icon="material-symbols:favorite" class="w-7 h-7 text-rick-white" @click="removeFavoriteCharacter()"
+            v-if="isFavorite" />
+          <Icon icon="material-symbols:favorite-outline" class="w-7 h-7 text-rick-white" @click="addFavoriteCharacter()"
+            v-if="!isFavorite" />
+        </template>
       </div>
       <transition name="fade" @click="goCharacter">
         <img :src="character.image" class="w-full h-full absolute " @load="onImageLoad" @error="onImageError"
@@ -55,6 +59,6 @@ const onImageError = () => {
   imageError.value = true;
 };
 
-const { addFavoriteCharacter, removeFavoriteCharacter, isFavorite } = useFavorites(character.value.id);
+const { addFavoriteCharacter, removeFavoriteCharacter, isFavorite, settingFavorite, loadingFavoriteCharacters } = useFavorites(character.value.id);
 
 </script>

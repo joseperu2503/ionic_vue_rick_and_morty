@@ -10,6 +10,7 @@ import { useBackButton } from '@/composables/useBackButton';
 import { StatusBar } from '@capacitor/status-bar';
 import { SafeArea } from 'capacitor-plugin-safe-area';
 import { isPlatform } from '@ionic/vue';
+import { useFavorites } from "@/composables/useFavorites";
 
 useBackButton()
 
@@ -41,6 +42,10 @@ const setInsets = (insets: SafeAreaInterface) => {
     );
   }
 }
+
+//carga de characters favoritos
+const { getFavoriteCharacters } = useFavorites();
+getFavoriteCharacters(true)
 
 </script>
 
