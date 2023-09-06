@@ -7,14 +7,12 @@
         </ion-buttons>
         <ion-title>{{ character.name }}</ion-title>
         <ion-buttons slot="end">
-          <ion-button>
+          <ion-button @click="toggleFavoriteCharacter()">
             <Icon icon="tdesign:loading" class="w-7 h-7 text-rick-white animate-spin"
               v-if="settingFavorite || loadingFavoriteCharacters" />
             <template v-else>
-              <Icon icon="material-symbols:favorite" class="w-7 h-7 text-rick-white" @click="removeFavoriteCharacter()"
-                v-if="isFavorite" />
-              <Icon icon="material-symbols:favorite-outline" class="w-7 h-7 text-rick-white"
-                @click="addFavoriteCharacter()" v-if="!isFavorite" />
+              <Icon icon="material-symbols:favorite" class="w-7 h-7 text-rick-white" v-if="isFavorite" />
+              <Icon icon="material-symbols:favorite-outline" class="w-7 h-7 text-rick-white" v-if="!isFavorite" />
             </template>
           </ion-button>
         </ion-buttons>
@@ -168,7 +166,7 @@ const onImageError = () => {
   imageError.value = true;
 };
 
-const { addFavoriteCharacter, removeFavoriteCharacter, isFavorite, settingFavorite, loadingFavoriteCharacters } = useFavorites(parseInt(characterId));
+const { isFavorite, settingFavorite, loadingFavoriteCharacters, toggleFavoriteCharacter } = useFavorites(parseInt(characterId));
 
 </script>
 

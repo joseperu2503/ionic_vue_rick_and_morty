@@ -24,7 +24,8 @@ export function useFavorites(characterId?: number) {
 
   const addFavoriteCharacter = async () => {
     const isAuth = verifyAuth()
-    if (isAuth && !settingFavorite.value) {
+    if (isAuth) {
+      if (settingFavorite.value) return;
       settingFavorite.value = true
       await authApi.post(`/add-favorite-character`, {
         characterId
@@ -38,7 +39,8 @@ export function useFavorites(characterId?: number) {
 
   const removeFavoriteCharacter = async () => {
     const isAuth = verifyAuth()
-    if (isAuth && !settingFavorite.value) {
+    if (isAuth) {
+      if (settingFavorite.value) return;
       settingFavorite.value = true
       await authApi.post(`/remove-favorite-character`, {
         characterId
@@ -49,6 +51,14 @@ export function useFavorites(characterId?: number) {
     } else {
       openAuthModal()
     }
+  }
+
+  const toggleFavoriteCharacter = () => {
+    if (isFavorite.value) {
+      removeFavoriteCharacter()
+      return;
+    }
+    addFavoriteCharacter();
   }
 
   const isFavorite = computed(() => {
@@ -65,6 +75,7 @@ export function useFavorites(characterId?: number) {
     favoriteCharacters,
     isFavorite,
     settingFavorite,
-    loadingFavoriteCharacters
+    loadingFavoriteCharacters,
+    toggleFavoriteCharacter
   }
 }
