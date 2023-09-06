@@ -66,7 +66,7 @@ export function useAuthModal() {
       closeAuthModal()
       saveToken(response.data.access_token)
       verifyAuth()
-      getFavoriteCharacters()
+      getFavoriteCharacters(true)
     } catch (error: any) {
       if (error.response?.status === 422) {
         loginErrors.value = error.response.data.errors;
