@@ -23,7 +23,7 @@
         <div class="flex justify-center mt-10 mb-6">
           <img src="@/assets/logo.png" class="w-48">
         </div>
-        <form class="flex flex-col gap-10">
+        <form class="flex flex-col gap-10" @keydown.enter="login">
           <div>
             <ion-input label-placement="floating" label="Email" name="email" type="email" v-model="loginForm.email"
               class="pr-[55px]" fill="outline" mode="md" :class="{ 'ion-invalid ion-touched': !!loginErrors.email?.[0] }"
@@ -52,7 +52,7 @@
       <div class="flex flex-col justify-between h-full">
         <div>
         </div>
-        <form class="flex flex-col gap-6">
+        <form class="flex flex-col gap-6" @keydown.enter="register">
           <div>
             <ion-input label-placement="floating" label="Name" name="name" v-model="registerForm.name" class="pr-[55px]"
               fill="outline" mode="md" :class="{ 'ion-invalid ion-touched': !!registerErrors.name?.[0] }"
