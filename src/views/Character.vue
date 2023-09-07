@@ -19,7 +19,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true"
-      :style="{ '--background': `linear-gradient(0deg,  var(--ion-background-color) 0%, ${backgroundColor} )` }">
+      :style="{ '--background': `linear-gradient(-10deg,  var(--ion-background-color) 0%, ${backgroundColor} )` }">
       <div class="ion-padding">
         <div class="flex flex-col md:flex-row gap-2 md:gap-12 lg:24 justify-center">
           <div
@@ -170,3 +170,8 @@ const onImageError = () => {
 const { isFavorite, settingFavorite, loadingFavoriteCharacters, toggleFavoriteCharacter } = useFavorites(parseInt(characterId));
 
 </script>
+<style scoped>
+ion-card{
+  --background: rgba(31, 31, 31, 0.434);
+}
+</style>

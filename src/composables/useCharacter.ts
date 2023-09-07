@@ -40,11 +40,8 @@ export function useCharacter() {
     try {
       const fac = new FastAverageColor();
       const response = await fac.getColorAsync(imageUrl)
-      console.log(response)
       const value = response.value
-      // backgroundColor.value = response.hex
-      backgroundColor.value = `rgb(${value[0]-50},${value[1]-50},${value[2]-50})`
-       console.log(backgroundColor.value)
+      backgroundColor.value = `rgb(${value[0] - 50},${value[1] - 50},${value[2] - 50})`
     } catch {
 
     }
