@@ -1,7 +1,7 @@
 
 ionic cap sync android
 
-npx @capacitor/assets generate
+<!-- npx @capacitor/assets generate -->
 
 <!-- Modificar en el archivo styles.xml -->
 

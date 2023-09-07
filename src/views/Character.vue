@@ -18,7 +18,8 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
+    <ion-content :fullscreen="true"
+      :style="{ '--background': `linear-gradient(0deg,  var(--ion-background-color) 0%, ${backgroundColor} )` }">
       <div class="ion-padding">
         <div class="flex flex-col md:flex-row gap-2 md:gap-12 lg:24 justify-center">
           <div
@@ -140,7 +141,7 @@ const router = useIonRouter();
 
 const characterId: string = route.params.characterId as string;
 
-const { character, getCharacter, loadingCharacter, loadingEpisodes, episodes } = useCharacter();
+const { character, getCharacter, loadingCharacter, loadingEpisodes, episodes, backgroundColor } = useCharacter();
 
 getCharacter(characterId);
 
@@ -169,4 +170,3 @@ const onImageError = () => {
 const { isFavorite, settingFavorite, loadingFavoriteCharacters, toggleFavoriteCharacter } = useFavorites(parseInt(characterId));
 
 </script>
-

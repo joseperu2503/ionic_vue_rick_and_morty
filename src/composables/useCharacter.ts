@@ -2,6 +2,7 @@ import { http } from "@/http/http.service";
 import { ref } from "vue";
 import { Character, initCharacter } from "@/interfaces/character.interface.ts";
 import { useSomeEpisodes } from "@/composables/useSomeEpisodes";
+import { FastAverageColor } from 'fast-average-color';
 
 export function useCharacter() {
 
@@ -17,7 +18,7 @@ export function useCharacter() {
     let response = await http.get<Character>(`character/${characterId}`)
     character.value = response.data;
     loadingCharacter.value = false;
-
+    setBackgroundColor(character.value.image)
     let episodesId: string[] = [];
 
     character.value.episode.map((url) => {
@@ -33,11 +34,28 @@ export function useCharacter() {
     loadingEpisodes.value = false;
   };
 
+  const backgroundColor = ref('var(--ion-background-color)');
+
+  const setBackgroundColor = async (imageUrl: string) => {
+    try {
+      const fac = new FastAverageColor();
+      const response = await fac.getColorAsync(imageUrl)
+      console.log(response)
+      const value = response.value
+      // backgroundColor.value = response.hex
+      backgroundColor.value = `rgb(${value[0]-50},${value[1]-50},${value[2]-50})`
+       console.log(backgroundColor.value)
+    } catch {
+
+    }
+  }
+
   return {
     getCharacter,
     character,
     loadingCharacter,
     episodes,
-    loadingEpisodes
+    loadingEpisodes,
+    backgroundColor
   };
 }
