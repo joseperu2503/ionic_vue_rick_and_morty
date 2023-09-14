@@ -18,8 +18,6 @@ if (isPlatform('capacitor')) {
   //statusbar transparente
   StatusBar.setOverlaysWebView({ overlay: true });
 
-  //bloqueo de orientacion
-  window.screen.orientation.lock('portrait');
 }
 
 interface SafeAreaInterface {
