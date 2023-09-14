@@ -26,6 +26,7 @@
     "capacitor-plugin-safe-area": "^2.0.5",
     "cordova-plugin-screen-orientation": "^3.0.3",
     "dotenv": "^16.3.1",
+    "es6-promise-plugin": "^4.2.2",
     "fast-average-color": "^9.4.0",
     "ionicons": "^7.0.0",
     "jwt-decode": "^3.1.2",
