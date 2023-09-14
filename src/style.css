@@ -41,3 +41,8 @@ ion-card {
 .fade-leave {
   opacity: 0;
 }
+
+.input-bottom{
+  margin: 0 14px;
+  --padding-start: 0;
+}
