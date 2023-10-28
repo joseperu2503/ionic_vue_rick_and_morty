@@ -15,19 +15,15 @@
 <script setup lang="ts">
 import { Episode } from "@/interfaces/episode.interface";
 import { toRefs } from "vue";
-import { useIonRouter, IonRippleEffect  } from '@ionic/vue';
-import { useTabStore } from "@/stores/tab";
-import { storeToRefs } from 'pinia';
+import { useIonRouter, IonRippleEffect } from '@ionic/vue';
 import { IonCard } from '@ionic/vue';
 
-const tabStore = useTabStore();
-const { selectedTab } = storeToRefs(tabStore);
 const router = useIonRouter();
 
 const props = defineProps<{ episode: Episode }>();
 const { episode } = toRefs(props);
 
 const goEpisode = () => {
-  router.push(`/${selectedTab.value}/episode/${episode.value.id}`);
+  router.push(`/episodes/${episode.value.id}`);
 };
 </script>

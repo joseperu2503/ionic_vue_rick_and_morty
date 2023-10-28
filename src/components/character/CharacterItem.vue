@@ -29,12 +29,8 @@
 import { toRefs, ref } from "vue";
 import { useIonRouter, IonCard, IonRippleEffect } from '@ionic/vue';
 import { Character } from "@/interfaces/character.interface.ts";
-import { useTabStore } from "@/stores/tab";
-import { storeToRefs } from 'pinia';
 import { useFavorites } from "@/composables/useFavorites";
 
-const tabStore = useTabStore();
-const { selectedTab } = storeToRefs(tabStore);
 const router = useIonRouter();
 
 const props = defineProps<{ character: Character }>();
@@ -43,7 +39,7 @@ const imageLoaded = ref(false);
 const imageError = ref(false);
 
 const goCharacter = () => {
-  router.push(`/${selectedTab.value}/character/${character.value.id}`);
+  router.push(`/characters/${character.value.id}`);
 };
 
 const onImageLoad = () => {

@@ -19,51 +19,27 @@ const router = createRouter({
           component: () => import("@/views/Characters.vue"),
         },
         {
-          path: "/characters/character/:characterId",
-          component: () => import("@/views/Character.vue"),
-        },
-        {
-          path: "/characters/location/:locationId",
-          component: () => import("@/views/Location.vue"),
-        },
-        {
-          path: "/characters/episode/:episodeId",
-          component: () => import("@/views/Episode.vue"),
-        },
-        {
           path: "/locations",
           component: () => import("@/views/Locations.vue"),
         },
         {
-          path: "/locations/character/:characterId",
-          component: () => import("@/views/Character.vue"),
-        },
-        {
-          path: "/locations/location/:locationId",
-          component: () => import("@/views/Location.vue"),
-        },
-        {
-          path: "/locations/episode/:episodeId",
-          component: () => import("@/views/Episode.vue"),
-        },
-        {
           path: '/episodes',
           component: () => import('@/views/Episodes.vue')
-        },
-        {
-          path: "/episodes/episode/:episodeId",
-          component: () => import("@/views/Episode.vue"),
-        },
-        {
-          path: "/episodes/character/:characterId",
-          component: () => import("@/views/Character.vue"),
-        },
-        {
-          path: "/episodes/location/:locationId",
-          component: () => import("@/views/Location.vue"),
-        },
+        }
       ]
-    }
+    },
+    {
+      path: "/characters/:characterId",
+      component: () => import("@/views/Character.vue"),
+    },
+    {
+      path: "/locations/:locationId",
+      component: () => import("@/views/Location.vue"),
+    },
+    {
+      path: "/episodes/:episodeId",
+      component: () => import("@/views/Episode.vue"),
+    },
   ],
 });
 
