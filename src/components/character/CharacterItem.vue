@@ -10,8 +10,9 @@
           <Icon icon="material-symbols:favorite-outline" class="w-7 h-7 text-rick-white" v-if="!isFavorite" />
         </template>
       </div>
-      <img :src="character.image" class="w-full h-full absolute " @load="onImageLoad" @error="onImageError" />
-      <img src="@/assets/avatar_default.jpeg" class="w-full absolute" v-if="!imageLoaded" />
+      <img :src="character.image" class="w-full h-full absolute " @load="onImageLoad" @error="onImageError"
+        @click="goCharacter" />
+      <img src="@/assets/avatar_default.jpeg" class="w-full absolute" v-if="!imageLoaded" @click="goCharacter" />
 
       <div class="absolute bg-gradient-to-t from-black bottom-0 h-1/5 w-full ">
       </div>
