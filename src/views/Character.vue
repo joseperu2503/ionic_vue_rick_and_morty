@@ -152,7 +152,7 @@ const getLocationId = () => {
 
 const goLocation = () => {
   let locationId = getLocationId();
-  router.push(`/${selectedTab.value}/location/${locationId}`);
+  router.push(`/locations/${locationId}`);
 };
 
 const imageLoaded = ref(false);
