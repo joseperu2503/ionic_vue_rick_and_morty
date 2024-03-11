@@ -2,7 +2,7 @@
   <ion-page mode="ios">
     <ion-header :translucent="true" class="ion-no-border">
       <Appbar title="Locations" />
-      <ion-toolbar>
+      <!-- <ion-toolbar>
         <ion-searchbar
           v-model="search"
           @keydown.enter="hideKeyboard"
@@ -12,34 +12,44 @@
           type="indeterminate"
           v-if="loading && page == 1"
         ></ion-progress-bar>
-      </ion-toolbar>
+      </ion-toolbar> -->
     </ion-header>
-    <ion-content :fullscreen="true" class="ion-padding">
-      <transition name="fade" mode="out-in">
-        <!-- <LocationsSkeleton v-if="loading && page == 1" /> -->
-        <div
-          v-if="loading && page == 1"
-          class="h-full flex justify-center items-center"
+    <ion-content :fullscreen="true">
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">Locations</ion-title>
+          <ion-buttons :collapse="true" slot="end">
+            <ion-icon slot="icon-only" :icon="searchOutline"></ion-icon>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <div class="ion-padding">
+        <transition name="fade" mode="out-in">
+          <!-- <LocationsSkeleton v-if="loading && page == 1" /> -->
+          <div
+            v-if="loading && page == 1"
+            class="h-full flex justify-center items-center"
+          >
+            <ion-spinner> </ion-spinner>
+          </div>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-8"
+            v-else
+          >
+            <LocationItem
+              v-for="item in locations"
+              :key="item.id"
+              :location="item"
+            />
+          </div>
+        </transition>
+        <ion-infinite-scroll
+          @ionInfinite="loadMoreLocations"
+          :disabled="page > numPages || (loading && page == 1)"
         >
-          <ion-spinner> </ion-spinner>
-        </div>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-8"
-          v-else
-        >
-          <LocationItem
-            v-for="item in locations"
-            :key="item.id"
-            :location="item"
-          />
-        </div>
-      </transition>
-      <ion-infinite-scroll
-        @ionInfinite="loadMoreLocations"
-        :disabled="page > numPages || (loading && page == 1)"
-      >
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -58,7 +68,10 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonSpinner,
+  IonIcon,
+  IonButtons,
 } from "@ionic/vue";
+import { searchOutline } from "ionicons/icons";
 import { useKeyboard } from "@/composables/useKeyboard";
 import Appbar from "@/components/shared/Appbar.vue";
 

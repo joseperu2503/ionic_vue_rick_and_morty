@@ -4,7 +4,7 @@
       <div class="text-rick-green-3">
         {{ episode.episode }}
       </div>
-      <div class="text-rick-white text-end truncate">
+      <div class="text-end truncate">
         {{ episode.name }}
       </div>
     </div>
@@ -15,8 +15,8 @@
 <script setup lang="ts">
 import { Episode } from "@/interfaces/episode.interface";
 import { toRefs } from "vue";
-import { useIonRouter, IonRippleEffect } from '@ionic/vue';
-import { IonCard } from '@ionic/vue';
+import { useIonRouter, IonRippleEffect } from "@ionic/vue";
+import { IonCard } from "@ionic/vue";
 
 const router = useIonRouter();
 
