@@ -1,7 +1,10 @@
 <template>
   <ion-toolbar class="safe-area-top">
     <ion-title>{{ title }}</ion-title>
-    <ion-buttons slot="primary">
+    <ion-buttons :collapse="true" slot="end">
+      <ion-icon slot="icon-only" :icon="searchOutline"></ion-icon>
+    </ion-buttons>
+    <!-- <ion-buttons :collapse="true" slot="end">
       <ion-button @click="openAuthModal" v-if="!user">
         <ion-icon
           slot="icon-only"
@@ -18,7 +21,7 @@
       >
         {{ nameInitial }}
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </template>
 
@@ -30,7 +33,7 @@ import {
   IonButton,
   IonIcon,
 } from "@ionic/vue";
-import { personCircle } from "ionicons/icons";
+import { personCircle, searchOutline } from "ionicons/icons";
 import { useAuthModal } from "@/composables/useAuthModal";
 import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";

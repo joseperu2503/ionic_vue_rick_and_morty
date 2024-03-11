@@ -4,7 +4,7 @@
 
 ion-toolbar {
   --background: #303032;
-  --min-height: 50px;
+  /* --min-height: 50px; */
 }
 
 ion-back-button {
