@@ -236,12 +236,11 @@ http://ionicframework.com/docs/theming/ */
 }
 
 :root {
-  /* --rick-background-color: #202121;
-  --rick-white: #F0F2EB; */
+  /* --rick-background-color: #202121; */
+  --rick-white: #F0F2EB;
   /* --ion-background-color: #121212;
   --ion-background-color-rgb: 18,18,18; */
   /* --ion-text-color: #ffffff; */
   /* --ion-text-color-rgb: 255,255,255; */
   /* --ion-card-background: #242424; */
-
 }

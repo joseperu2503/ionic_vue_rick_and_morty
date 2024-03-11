@@ -71,6 +71,8 @@ ion-tab-button {
   --color-selected: var(--rick-white);
   --color-active: var(--rick-white); */
   /* --background: black; */
+  --color-selected: var(--ion-color-dark);
+
 }
 
 ion-tab-bar {
