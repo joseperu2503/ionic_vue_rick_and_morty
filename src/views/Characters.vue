@@ -1,5 +1,5 @@
 <template>
-  <ion-page mode="ios">
+  <ion-page >
     <ion-header :translucent="true">
       <Appbar title="Characters" />
       <!-- <ion-toolbar>

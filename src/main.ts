@@ -30,7 +30,7 @@ const pinia = createPinia()
 const app = createApp(App)
   .use(pinia)
   .use(IonicVue, {
-    mode: 'ios'
+    // mode: 'ios'
   })
   .component('Icon', Icon)
   .use(router);

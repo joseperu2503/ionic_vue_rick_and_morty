@@ -30,7 +30,7 @@ export function useAuthModal() {
     authModal.value = null
     authModal.value = await modalController.create({
       component: AuthModal,
-      mode: 'ios',
+      // mode: 'ios',
     });
     authModal.value.present();
     resetLoginForm()

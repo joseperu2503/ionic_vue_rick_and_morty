@@ -1,5 +1,5 @@
 <template>
-  <ion-page mode="ios">
+  <ion-page >
     <ion-header :translucent="true" class="ion-no-border">
       <ion-toolbar class="safe-area-top">
         <ion-buttons slot="start">
