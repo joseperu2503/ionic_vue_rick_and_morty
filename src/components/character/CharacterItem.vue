@@ -44,15 +44,15 @@
       <ion-ripple-effect></ion-ripple-effect>
     </ion-card>
     <div class="mt-2" @click="goCharacter">
-      <h2 class="text-sm text-rick-white leading-none truncate font-semibold">
+      <ion-text class="text-sm leading-none truncate font-semibold">
         {{ character.name }}
-      </h2>
+      </ion-text>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { toRefs, ref } from "vue";
-import { useIonRouter, IonCard, IonRippleEffect } from "@ionic/vue";
+import { useIonRouter, IonCard, IonRippleEffect, IonText } from "@ionic/vue";
 import { Character } from "@/interfaces/character.interface.ts";
 import { useFavorites } from "@/composables/useFavorites";
 

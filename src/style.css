@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 ion-toolbar {
-  --background: #303032;
+  /* --background: #303032; */
   /* --min-height: 50px; */
 }
 
-ion-back-button {
+/* ion-back-button {
   --color: white;
-}
+} */
 
-ion-title {
+/* ion-title {
   --color: white;
-}
+} */
 
 ion-progress-bar {
   --progress-background: white;
@@ -21,9 +21,9 @@ ion-progress-bar {
   height: 1px;
 }
 
-ion-spinner{
+/* ion-spinner{
   --color: white !important;
-}
+} */
 
 ion-card {
   margin: 0;
