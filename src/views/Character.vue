@@ -1,5 +1,5 @@
 <template>
-  <ion-page >
+  <ion-page>
     <ion-header :translucent="true" class="ion-no-border">
       <ion-toolbar class="safe-area-top">
         <ion-buttons slot="start">
@@ -29,183 +29,73 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content
-      :fullscreen="true"
-      :style="{
-        '--background': `linear-gradient(-10deg,  var(--ion-background-color) 0%, ${backgroundColor} ) !important`,
-      }"
-    >
-      <div class="ion-padding">
+    <ion-content class="ion-padding">
+      <div
+        class="flex flex-col md:flex-row gap-2 md:gap-12 lg:24 justify-center"
+      >
         <div
-          class="flex flex-col md:flex-row gap-2 md:gap-12 lg:24 justify-center"
+          class="flex items-center justify-center w-full max-w-xs md:w-72 mx-auto aspect-square rounded-md overflow-hidden"
+          :class="{ 'animate-pulse': !imageLoaded && !imageError }"
         >
+          <img
+            src="@/assets/avatar_default.jpeg"
+            class="w-full"
+            v-if="imageError || (!imageLoaded && !imageError)"
+          />
+          <img
+            :src="character.image"
+            class="w-full"
+            @load="onImageLoad"
+            @error="onImageError"
+            v-show="imageLoaded"
+          />
+        </div>
+        <div class="mx-auto md:mx-0 w-full max-w-2xl">
           <div
-            class="flex items-center justify-center w-full max-w-xs md:w-72 mx-auto aspect-square rounded-md overflow-hidden"
-            :class="{ 'animate-pulse': !imageLoaded && !imageError }"
+            class="flex flex-col gap-3 items-center md:items-start justify-between h-full"
           >
-            <img
-              src="@/assets/avatar_default.jpeg"
-              class="w-full"
-              v-if="imageError || (!imageLoaded && !imageError)"
-            />
-            <img
-              :src="character.image"
-              class="w-full"
-              @load="onImageLoad"
-              @error="onImageError"
-              v-show="imageLoaded"
-            />
-          </div>
-          <div class="mx-auto md:mx-0 w-full max-w-2xl">
-            <div
-              class="flex flex-col gap-3 items-center md:items-start justify-between h-full"
-            >
-              <div class="mb-4 lg:mb-0">
-                <transition name="fade" mode="out-in">
-                  <div v-if="loadingCharacter">
-                    <div
-                      class="h-[24px] my-[4px] animate-pulse bg-rick-white/70 rounded"
-                      :style="{
-                        width:
-                          Math.floor(Math.random() * (250 - 100 + 1)) +
-                          100 +
-                          'px',
-                      }"
-                    />
-                  </div>
-                  <ion-text v-else class="text-2xl font-semibold">
-                    {{ character.name }}
-                  </ion-text>
-                </transition>
-              </div>
-
-              <ion-card class="w-full">
-                <transition name="fade" mode="out-in">
-                  <div
-                    class="py-4 px-3 flex flex-col gap-2 justify-between"
-                    v-if="loadingCharacter"
-                  >
-                    <div class="flex gap-4 justify-between items-center">
-                      <div
-                        class="w-[47px] h-[14px] my-[3px] animate-pulse bg-rick-3/70 rounded"
-                      />
-                      <div
-                        class="w-[45px] h-[14px] my-[3px] animate-pulse bg-rick-white/70 rounded"
-                      />
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <div
-                        class="w-[43px] h-[14px] my-[3px] animate-pulse bg-rick-3/70 rounded"
-                      />
-                      <div
-                        class="h-[14px] my-[3px] animate-pulse bg-rick-white/70 rounded"
-                        :style="{
-                          width:
-                            Math.floor(Math.random() * (80 - 40 + 1)) +
-                            40 +
-                            'px',
-                        }"
-                      />
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <div
-                        class="w-[40px] h-[14px] my-[3px] animate-pulse bg-rick-3/70 rounded"
-                      />
-                      <div
-                        class="h-[14px] my-[3px] animate-pulse bg-rick-white/70 rounded"
-                        :style="{
-                          width:
-                            Math.floor(Math.random() * (80 - 40 + 1)) +
-                            40 +
-                            'px',
-                        }"
-                      />
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <div
-                        class="w-[38px] h-[14px] my-[3px] animate-pulse bg-rick-3/70 rounded"
-                      />
-                      <div
-                        class="h-[14px] my-[3px] animate-pulse bg-rick-white/70 rounded"
-                        :style="{
-                          width:
-                            Math.floor(Math.random() * (80 - 40 + 1)) +
-                            40 +
-                            'px',
-                        }"
-                      />
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <div
-                        class="w-[53px] h-[14px] my-[3px] animate-pulse bg-rick-3/70 rounded"
-                      />
-                      <div
-                        class="h-[14px] my-[3px] animate-pulse bg-rick-white/70 rounded"
-                        :style="{
-                          width:
-                            Math.floor(Math.random() * (130 - 40 + 1)) +
-                            40 +
-                            'px',
-                        }"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="py-4 px-3 flex flex-col gap-2 justify-between"
-                    v-else
-                  >
-                    <div class="flex gap-4 justify-between items-center">
-                      <span class="text-rick-3 text-sm sm:text-base"
-                        >Gender</span
-                      >
-                      <span class="text-white text-sm sm:text-base text-right">
-                        {{ character.gender }}</span
-                      >
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <span class="text-rick-3 text-sm sm:text-base"
-                        >Specie</span
-                      >
-                      <span class="text-white text-sm sm:text-base text-right">
-                        {{ character.species }}</span
-                      >
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <span class="text-rick-3 text-sm sm:text-base"
-                        >Status</span
-                      >
-                      <span class="text-white text-sm sm:text-base text-right">
-                        {{ character.status }}</span
-                      >
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <span class="text-rick-3 text-sm sm:text-base"
-                        >Origin</span
-                      >
-                      <span class="text-white text-sm sm:text-base text-right">
-                        {{ character.origin?.name }}</span
-                      >
-                    </div>
-                    <div class="flex gap-4 justify-between items-center">
-                      <span
-                        class="text-rick-3 text-sm sm:text-base"
-                        @click="goLocation()"
-                        >Location</span
-                      >
-                      <div
-                        class="text-white text-sm sm:text-base text-right"
-                        @click="goLocation()"
-                      >
-                        {{ character.location?.name }}
-                      </div>
-                    </div>
-                  </div>
-                </transition>
-              </ion-card>
+            <div class="mb-4">
+              <ion-text class="text-2xl font-semibold">
+                {{ character.name }}
+              </ion-text>
             </div>
           </div>
         </div>
-        <div class="mt-10 md:mt-20">
+      </div>
+      <ion-card>
+        <ion-list>
+          <ion-item>
+            <ion-label> Gender </ion-label>
+            <ion-label slot="end"> {{ character.gender }} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label> Specie </ion-label>
+            <ion-label slot="end"> {{ character.species }} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label> Status </ion-label>
+            <ion-label slot="end"> {{ character.status }} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label> Origin </ion-label>
+            <ion-label slot="end"> {{ character.origin.name }} </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label> Location </ion-label>
+            <ion-label slot="end"> {{ character.location.name }} </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
+      <ion-text>
+        <h1 class="text-2xl font-semibold">Episodes</h1>
+      </ion-text>
+
+      <div class="flex flex-col gap-4">
+        <EpisodeItem v-for="item in episodes" :key="item.id" :episode="item" />
+      </div>
+
+      <!-- <div class="mt-10 md:mt-20">
           <div class="flex justify-center items-center gap-4">
             <div class="bg-gray-500 h-[0.1px] flex-1"></div>
             <div class="flex items-center gap-3 justify-center">
@@ -229,17 +119,26 @@
               </div>
             </transition>
           </div>
-        </div>
-      </div>
+        </div> -->
     </ion-content>
   </ion-page>
 </template>
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRoute } from "vue-router";
-import { useIonRouter, IonCard } from "@ionic/vue";
+import {
+  useIonRouter,
+  IonCard,
+  IonModal,
+  IonList,
+  IonItem,
+  IonIcon,
+  IonLabel,
+} from "@ionic/vue";
 import { useCharacter } from "@/composables/useCharacter";
 import EpisodeItem from "@/components/episode/EpisodeItem.vue";
+import { airplane, bluetooth, call, wifi } from "ionicons/icons";
+
 import {
   IonContent,
   IonHeader,
@@ -304,7 +203,7 @@ const {
 } = useFavorites(parseInt(characterId));
 </script>
 <style scoped>
-ion-card {
+/* ion-card {
   --background: rgba(31, 31, 31, 0.434);
-}
+} */
 </style>
